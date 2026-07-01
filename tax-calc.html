@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>간편 모의계산 | 한결 세무회계 (샘플)</title>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{--green:#0f5e4e;--green-d:#0a463a;--gold:#c8a24a;--gold-d:#a9842f;--ink:#1d2a26;--gray:#5a6a64;--line:#e4ece8;--bg:#f5f9f7;--card:#fff;--soft:#eaf3ef;--soft2:#f6f0e2;--cream:#f3faf8;--shadow:0 18px 50px rgba(15,94,78,.13)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.samplebar{background:var(--gold);color:#3a2c08;text-align:center;font-size:13px;font-weight:700;padding:7px 12px}
+.samplebar a{text-decoration:underline}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(245,249,247,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:66px;gap:26px}
+.logo{font-weight:800;font-size:21px;letter-spacing:-.5px;display:flex;align-items:center;gap:9px;color:var(--green)}
+.logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--gold));display:grid;place-items:center;color:#fff;font-size:17px;font-weight:800}
+.logo small{display:block;font-size:10px;color:var(--gray);font-weight:600;letter-spacing:1px}
+.menu{display:flex;gap:22px;font-size:15px;font-weight:600;color:var(--gray)}
+.menu a:hover{color:var(--green)}
+.menu a.on{color:var(--green);font-weight:800}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.tel{font-weight:800;color:var(--green);font-size:16px}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:11px;transition:.18s;font-size:15px;display:inline-block}
+.btn-gold{background:var(--gold);color:#3a2c08;padding:12px 20px}
+.btn-gold:hover{background:var(--gold-d);color:#fff}
+.btn-kakao{background:#fae100;color:#3a1d1d;padding:12px 18px}
+.btn-kakao:hover{background:#f2d800;transform:translateY(-2px)}
+@media(max-width:900px){.menu,.tel{display:none}}
+/* page header */
+.phead{text-align:center;padding:48px 16px 6px}
+.phead .eyebrow{color:var(--gold-d);font-weight:800;font-size:13px;letter-spacing:1.5px}
+.phead h1{font-size:34px;font-weight:800;letter-spacing:-1px;margin:8px 0 6px}
+.phead p{color:var(--gray);font-size:16px}
+.page{padding:24px 16px 70px}
+/* calculator */
+.simbox{max-width:640px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px}
+.ttabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px;justify-content:center}
+.tt{border:1px solid var(--line);background:#fff;color:var(--gray);font-family:inherit;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+.tt.on{background:var(--green);color:#fff;border-color:var(--green)}
+.tt:hover{color:var(--green-d)}
+.pill2{display:flex;gap:8px;background:var(--soft);border-radius:14px;padding:6px;margin-bottom:18px}
+.pill2 button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:800;font-size:14px;padding:12px;border-radius:10px;cursor:pointer;color:var(--gray)}
+.pill2 button.on{background:var(--green);color:#fff}
+.fld{margin-bottom:18px}
+.fld>label{display:block;font-weight:700;font-size:14.5px;margin-bottom:10px}
+.fld .rowlab{display:flex;justify-content:space-between;align-items:center}
+.fld .rowlab b{color:var(--green);font-size:16px}
+input[type=range]{width:100%;-webkit-appearance:none;appearance:none;height:7px;border-radius:5px;background:var(--soft);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;border:none}
+.rng{display:flex;justify-content:space-between;font-size:12px;color:var(--gray);margin-top:6px}
+select.sin{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 13px;font-family:inherit;font-size:15px;background:#fbfdfc;color:var(--ink)}
+select.sin:focus{outline:none;border-color:var(--green)}
+.ropt{display:flex;flex-direction:column;gap:8px}
+.ropt .ro{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:14.5px;transition:.15s}
+.ropt .ro .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 18px}
+.ropt .ro.on{border-color:var(--green);background:var(--soft)}
+.ropt .ro.on .dot{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+.hint{font-size:12px;color:var(--gray);margin-top:8px;line-height:1.5}
+.btab{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:16px 0 20px}
+.bhd{display:grid;grid-template-columns:1fr 1fr;background:var(--green);color:#fff;font-weight:800;font-size:14px}
+.bhd div{padding:12px 16px}
+.brow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.brow div{padding:11px 16px;font-size:14px}
+.brow div:first-child{font-weight:700;color:var(--ink)}
+.brow div:last-child{text-align:right;color:var(--ink)}
+.brow.hl{background:var(--soft2)}
+.brow.hl div{font-weight:800}
+.brow.hl div:last-child{color:#c0392b}
+.scards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scard{background:var(--soft);border-radius:14px;padding:18px;text-align:center}
+.scard .l{font-size:13px;color:var(--gray);font-weight:700}
+.scard .n{font-size:23px;font-weight:800;letter-spacing:-1px;margin-top:5px;color:var(--ink)}
+.scard.red .n{color:#c0392b}.scard.green .n{color:#1aa463}
+.note{background:var(--soft2);border-radius:12px;padding:14px 16px;font-size:12.5px;color:#6a5a2e;margin-top:16px;line-height:1.6}
+.backhome{text-align:center;margin-top:24px}
+.backhome a{color:var(--green);font-weight:700;font-size:14.5px}
+/* footer */
+footer{background:#10302c;color:#9bb8b1;padding:36px 0;font-size:13.5px;text-align:center}
+footer b{color:#fff}
+footer .copy{margin-top:8px;color:#6f8d86;font-size:11.5px}
+@media(max-width:520px){.scards{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="samplebar">📌 프로 홈페이지 포트폴리오 샘플 (가상의 세무사무소) · <a href="index.html">프로 홈페이지로 돌아가기</a></div>
+
+<nav><div class="wrap">
+  <a class="logo" href="portfolio-tax.html"><span class="mark">한</span><div>한결 세무회계<small>HANGYEOL TAX</small></div></a>
+  <div class="menu">
+    <a href="portfolio-tax.html#svc">업무분야</a>
+    <a href="portfolio-tax.html#proc">진행 과정</a>
+    <a href="tax-calc.html" class="on">모의계산</a>
+    <a href="portfolio-tax.html#contact">상담신청</a>
+  </div>
+  <div class="nav-cta">
+    <span class="tel">02-000-0000</span>
+    <a class="btn btn-gold" href="portfolio-tax.html#contact">상담 신청</a>
+    <a class="btn btn-kakao" href="portfolio-tax.html#contact">카카오톡 상담</a>
+  </div>
+</div></nav>
+
+<div class="phead">
+  <p class="eyebrow">TAX SIMULATION</p>
+  <h1>간편 모의계산</h1>
+  <p>세목과 조건을 고르면 예상 세액이 바로 계산됩니다.</p>
+</div>
+
+<div class="page">
+  <div class="simbox">
+    <div class="ttabs" id="ttabs">
+      <button class="tt on" data-k="jongso">종합소득세</button>
+      <button class="tt" data-k="buga">부가가치세</button>
+      <button class="tt" data-k="beobin">법인세</button>
+      <button class="tt" data-k="yangdo">양도소득세</button>
+      <button class="tt" data-k="sangjeung">상속·증여세</button>
+    </div>
+    <div id="ctrls"></div>
+    <div class="btab" id="btab"></div>
+    <div class="scards" id="scards"></div>
+    <div class="note" id="note"></div>
+  </div>
+  <p class="backhome"><a href="portfolio-tax.html">← 한결 세무회계 홈으로</a></p>
+</div>
+
+<footer><div class="wrap">
+  <p><b>한결 세무회계</b> (포트폴리오 샘플) · 대표원장 김민준 세무사</p>
+  <p class="copy">공개 세법 기준 간이 계산기 · 실제 사무소가 아닙니다 · © 2026</p>
+</div></footer>
+
+<script>
+var won=function(n){return Math.round(n).toLocaleString('ko-KR')+'원';};
+var brk=function(base,T){var g=0;for(var i=0;i<T.length;i++){if(base<=T[i][0]){g=base*T[i][1]-T[i][2];break;}}return Math.max(0,g);};
+var INC=[[14000000,.06,0],[50000000,.15,1260000],[88000000,.24,5760000],[150000000,.35,15440000],[300000000,.38,19940000],[500000000,.40,25940000],[1000000000,.42,35940000],[Infinity,.45,65940000]];
+var CORP=[[200000000,.09,0],[20000000000,.19,20000000],[300000000000,.21,440000000],[Infinity,.24,9420000000]];
+var GIFT=[[100000000,.10,0],[500000000,.20,10000000],[1000000000,.30,60000000],[3000000000,.40,160000000],[Infinity,.50,460000000]];
+var fmtU=function(v,u){return u==='won'?won(v):u==='%'?v+'%':u==='년'?v+'년':u==='명'?v+'명':v;};
+var TAX={
+ jongso:{controls:[
+   {type:'pill',id:'sType',options:[['free','프리랜서 (3.3%)'],['biz','개인사업자']]},
+   {type:'range',id:'sales',label:'연 매출액',min:0,max:300000000,step:1000000,value:40000000,unit:'won'},
+   {type:'range',id:'cr',label:'추정 경비율',min:0,max:100,step:1,value:50,unit:'%'},
+   {type:'range',id:'fam',label:'부양가족 수 (본인 외)',min:0,max:6,step:1,value:0,unit:'명',hint:'배우자·자녀 등 기본공제 대상. 1명당 150만원 추가 공제.'}
+  ],
+  compute:function(s){var cost=Math.round(s.sales*s.cr/100),per=1500000*(1+s.fam),base=Math.max(0,s.sales-cost-per);
+   var g=brk(base,INC),dec=Math.max(0,g-70000),total=Math.round(dec*1.1),paid=s.sType==='free'?Math.round(s.sales*0.033):0,diff=total-paid;
+   var rows=[['연 매출액',won(s.sales)],['추정 필요경비','- '+won(cost)],['인적공제 ('+(1+s.fam)+'명)','- '+won(per)],['과세표준',won(base)],['결정세액',won(dec)]];
+   if(s.sType==='free')rows.push(['기납부 세액 (3.3%)','- '+won(paid)]);
+   rows.push([diff>=0?'추가 납부액':'예상 환급액',diff>=0?won(diff):'환급 '+won(-diff),'hl']);
+   return {rows:rows,cards:[{l:'예상 소득세 (지방세 포함)',v:won(total)},{l:diff>=0?'예상 추가납부액':'예상 환급액',v:diff>=0?won(diff):won(-diff),k:diff>=0?'red':'green'}],
+    note:'매출−경비−인적공제(1인 150만원) → 누진세율 → 표준세액공제 7만원 → 지방소득세 10% 기준 간이 추정입니다.'};}
+ },
+ buga:{controls:[
+   {type:'pill',id:'vType',options:[['gen','일반과세자'],['sim','간이과세자']]},
+   {type:'select',id:'ind',label:'업종 (간이 부가율)',options:[['15','소매·음식점업 (15%)'],['20','제조·숙박업 (20%)'],['30','건설·운수업 (30%)'],['40','금융·부동산·기타 (40%)']],show:function(s){return s.vType==='sim';}},
+   {type:'range',id:'sales',label:'연 매출액',min:0,max:500000000,step:1000000,value:80000000,unit:'won'},
+   {type:'range',id:'buy',label:'연 매입액',min:0,max:500000000,step:1000000,value:30000000,unit:'won'}
+  ],
+  compute:function(s){
+   if(s.vType==='gen'){var out=Math.round(s.sales*0.1),inp=Math.round(s.buy*0.1),pay=out-inp;
+    return {rows:[['매출 공급가액',won(s.sales)],['매입액',won(s.buy)],['매출세액 (10%)',won(out)],['매입세액 (10%)','- '+won(inp)],[pay>=0?'납부세액':'환급세액',pay>=0?won(pay):'환급 '+won(-pay),'hl']],
+     cards:[{l:pay>=0?'예상 납부세액':'예상 환급세액',v:pay>=0?won(pay):won(-pay),k:pay>=0?'red':'green'}],
+     note:'일반과세자(세율 10%) 기준. 의제매입·신용카드 발행공제 등은 미반영한 간이 추정입니다.'};}
+   var rate=(+s.ind)/100;var due=Math.round(s.sales*rate*0.1);var cr=Math.round(s.buy*0.005);var pay=Math.max(0,due-cr);
+   return {rows:[['공급대가 (매출)',won(s.sales)],['업종 부가율',(s.ind)+'%'],['납부세액 (매출×부가율×10%)',won(due)],['매입세액공제 (0.5%)','- '+won(cr)],['납부세액',won(pay),'hl']],
+    cards:[{l:'예상 납부세액',v:won(pay),k:'red'}],
+    note:'간이과세자(연매출 8천만원 미만) 기준. 업종 부가율×10% − 매입액의 0.5% 공제로 계산한 간이 추정입니다.'};}
+ },
+ beobin:{controls:[
+   {type:'range',id:'base',label:'과세표준',min:0,max:3000000000,step:10000000,value:200000000,unit:'won'}
+  ],
+  compute:function(s){var g=brk(s.base,CORP),local=Math.round(g*0.1),total=g+local;
+   return {rows:[['과세표준',won(s.base)],['산출세액 (법인세)',won(g)],['지방소득세 (10%)',won(local)],['합계',won(total),'hl']],
+    cards:[{l:'예상 법인세',v:won(g)},{l:'지방세 포함 합계',v:won(total),k:'red'}],
+    note:'법인세율(2억 이하 9%, 2억~200억 19% 등) 단순 누진 기준 간이 추정입니다.'};}
+ },
+ yangdo:{controls:[
+   {type:'pill',id:'asset',options:[['re','부동산'],['stock','주식']]},
+   {type:'select',id:'prop',label:'양도 물건 종류',options:[['house','주택'],['general','일반 토지·상가·건물'],['nonbiz','비사업용 토지']],show:function(s){return s.asset==='re';}},
+   {type:'radio',id:'hstate',label:'주택 상태',options:[['exempt','1세대 1주택 비과세 요건 충족 가정'],['taxed','1세대 1주택 여부 불확실 (과세)'],['multi','2주택 이상 다주택']],show:function(s){return s.asset==='re'&&s.prop==='house';}},
+   {type:'radio',id:'stype',label:'주식 구분',options:[['listed','상장 소액주주 (비과세)'],['sme','중소기업 주식 (10%)'],['major','대주주 등 (20%)']],show:function(s){return s.asset==='stock';}},
+   {type:'range',id:'sell',label:'양도가액 (파는 가격)',min:0,max:3000000000,step:10000000,value:1500000000,unit:'won'},
+   {type:'range',id:'buy',label:'취득가액 (산 가격)',min:0,max:3000000000,step:10000000,value:800000000,unit:'won'},
+   {type:'range',id:'exp',label:'필요경비 (취득세·중개비 등)',min:0,max:200000000,step:1000000,value:20000000,unit:'won'},
+   {type:'range',id:'yrs',label:'보유 연수',min:1,max:20,step:1,value:10,unit:'년',show:function(s){return s.asset==='re';}}
+  ],
+  compute:function(s){
+   var gain=Math.max(0,s.sell-s.buy-s.exp);
+   if(s.asset==='stock'){var rate=s.stype==='sme'?0.10:s.stype==='major'?0.20:0;var base=Math.max(0,gain-2500000);var g=Math.round(base*rate),local=Math.round(g*0.1),total=g+local;
+    return {rows:[['양도차익',won(gain)],['기본공제','- '+won(2500000)],['과세표준',won(base)],['적용 세율',Math.round(rate*100)+'%'],['산출세액',won(g)],['지방소득세 (10%)',won(local)],['합계',won(total),'hl']],
+     cards:[{l:'예상 양도세',v:won(g)},{l:'지방세 포함',v:won(total),k:'red'}],
+     note:s.stype==='listed'?'상장주식 소액주주는 원칙적으로 양도세가 비과세입니다. (장외거래·대주주는 과세)':'주식 양도세 간이 추정입니다. 대주주는 3억 초과분 25% 등 세부 규정이 있어요.'};}
+   var taxable=gain, ltdRate=0, ex=false;
+   if(s.prop==='house'&&s.hstate==='exempt'){
+     if(s.sell<=1200000000){taxable=0;ex=true;}
+     else{taxable=Math.round(gain*(s.sell-1200000000)/s.sell); ltdRate=s.yrs>=3?Math.min(0.80,s.yrs*0.08):0;}
+   }else if(s.prop==='house'&&s.hstate==='multi'){taxable=gain;ltdRate=0;}
+   else{taxable=gain;ltdRate=s.yrs>=3?Math.min(0.30,s.yrs*0.02):0;}
+   var ltd=Math.round(taxable*ltdRate);var income=taxable-ltd, base=Math.max(0,income-2500000);
+   var g=brk(base,INC); var heavy=0; if(s.prop==='house'&&s.hstate==='multi')heavy=Math.round(base*0.20); else if(s.prop==='nonbiz')heavy=Math.round(base*0.10);
+   var totalTax=g+heavy; var local=Math.round(totalTax*0.1), grand=totalTax+local;
+   var rows=[['양도가액',won(s.sell)],['취득가액','- '+won(s.buy)],['필요경비','- '+won(s.exp)],['양도차익',won(gain)]];
+   if(s.prop==='house'&&s.hstate==='exempt'&&!ex)rows.push(['12억 초과 과세대상 양도차익',won(taxable)]);
+   rows.push(['장기보유특별공제','- '+won(ltd)],['양도소득금액',won(income)],['기본공제','- '+won(2500000)],['과세표준',won(base)]);
+   if(s.prop==='house'&&s.hstate==='multi')rows.push(['다주택 중과 (+20%p)','+ '+won(heavy)]); else if(s.prop==='nonbiz'&&heavy>0)rows.push(['비사업용 토지 중과 (+10%p)','+ '+won(heavy)]);
+   rows.push(['산출세액',won(totalTax)],['지방소득세 (10%)',won(local)],['합계',won(grand),'hl']);
+   var note='부동산 일반 기준 간이 추정입니다. 실제는 거주요건·조정지역·중과 한시배제 등에 따라 크게 달라져요.';
+   if(ex){rows=[['양도가액',won(s.sell)],['양도차익',won(gain)],['비과세 여부','1세대1주택·12억 이하'],['예상 양도세',won(0),'hl']];note='입력 조건(1세대1주택 비과세 요건 충족, 양도가 12억 이하)이면 양도세는 0원입니다. 실제 비과세는 보유·거주기간, 주택 수 등에 따라 달라집니다.';totalTax=0;grand=0;}
+   return {rows:rows,cards:[{l:'예상 양도세',v:won(totalTax)},{l:'지방세 포함',v:won(grand),k:'red'}],note:note};}
+ },
+ sangjeung:{controls:[
+   {type:'pill',id:'mode',options:[['gift','증여'],['inherit','상속']]},
+   {type:'range',id:'amount',label:'재산가액',min:0,max:5000000000,step:10000000,value:500000000,unit:'won'},
+   {type:'select',id:'rel',label:'증여 관계 (공제)',options:[['50000000','성년 자녀 (5천만원)'],['20000000','미성년 자녀 (2천만원)'],['600000000','배우자 (6억원)'],['10000000','기타 친족 (1천만원)']],show:function(s){return s.mode==='gift';}},
+   {type:'pill',id:'sedae',options:[['no','세대생략 아님'],['yes','세대생략(손자녀) 할증']],show:function(s){return s.mode==='gift';}},
+   {type:'select',id:'resident',label:'거주자 여부',options:[['res','상속개시일 현재 국내 거주자'],['non','비거주자 또는 잘 모르겠음']],show:function(s){return s.mode==='inherit';}},
+   {type:'select',id:'heirs',label:'상속인 구성 (가족 관계)',options:[['both','배우자와 자녀가 모두 있음'],['child','자녀만 있음 (배우자 없음)'],['spouse','배우자만 있음 (자녀 없음)']],show:function(s){return s.mode==='inherit';}},
+   {type:'select',id:'preYN',label:'생전 사전증여 여부',options:[['none','없음'],['yes','있음']],show:function(s){return s.mode==='inherit';},hint:'상속개시일 전 10년내 상속인에게 증여한 재산 등이 있으면 합산됩니다.'},
+   {type:'range',id:'pre',label:'사전증여 합산액',min:0,max:2000000000,step:10000000,value:0,unit:'won',show:function(s){return s.mode==='gift'||(s.mode==='inherit'&&s.preYN==='yes');}}
+  ],
+  compute:function(s){
+   if(s.mode==='gift'){var ded=+s.rel;var base=Math.max(0,s.amount+s.pre-ded);var g=brk(base,GIFT);var sur=s.sedae==='yes'?Math.round(g*0.3):0;var gt=g+sur;var credit=Math.round(gt*0.03);var pay=Math.max(0,gt-credit);
+    var rows=[['증여재산가액',won(s.amount)]];
+    if(s.pre>0)rows.push(['사전증여 합산','+ '+won(s.pre)]);
+    rows.push(['증여재산공제','- '+won(ded)],['과세표준',won(base)],['산출세액',won(g)]);
+    if(sur>0)rows.push(['세대생략 할증 (30%)','+ '+won(sur)]);
+    rows.push(['신고세액공제 (3%)','- '+won(credit)],['납부세액',won(pay),'hl']);
+    return {rows:rows,cards:[{l:'예상 증여세',v:won(pay),k:'red'}],
+     note:'증여세 누진세율(1억 이하 10% 등) 기준 간이 추정입니다. 실제 재산평가·공제는 상담이 필요해요.'};}
+   var pre=s.preYN==='yes'?s.pre:0;var ded,dedLabel;
+   if(s.resident==='non'){ded=200000000;dedLabel='기초공제 (비거주자)';}
+   else{var hasSp=(s.heirs==='both'||s.heirs==='spouse');ded=500000000+(hasSp?500000000:0);dedLabel='상속공제 (일괄'+(hasSp?'+배우자':'')+')';}
+   var base=Math.max(0,s.amount+pre-ded);var g=brk(base,GIFT);var credit=Math.round(g*0.03);var pay=Math.max(0,g-credit);
+   var rows=[['상속재산가액',won(s.amount)]];
+   if(pre>0)rows.push(['사전증여 합산','+ '+won(pre)]);
+   rows.push([dedLabel,'- '+won(ded)],['과세표준',won(base)],['산출세액',won(g)],['신고세액공제 (3%)','- '+won(credit)],['납부세액',won(pay),'hl']);
+   return {rows:rows,cards:[{l:'예상 상속세',v:won(pay),k:'red'}],
+    note:'거주자/비거주자·상속인 구성에 따른 공제를 반영한 간이 추정입니다. 실제는 배우자공제 한도·금융재산공제 등에 따라 달라집니다.'};}
+ }
+};
+var S={};var ctrls=document.getElementById('ctrls');
+function build(key){
+ var T=TAX[key]; S={}; var html='';
+ T.controls.forEach(function(c){
+  var wrapId='ctl_'+c.id;
+  if(c.type==='pill'){S[c.id]=c.options[0][0];
+   html+='<div class="pill2" id="'+wrapId+'">'+c.options.map(function(o,i){return '<button data-v="'+o[0]+'"'+(i===0?' class="on"':'')+'>'+o[1]+'</button>';}).join('')+'</div>';
+  }else if(c.type==='range'){S[c.id]=c.value;
+   html+='<div class="fld" id="'+wrapId+'"><div class="rowlab"><label>'+c.label+'</label><b id="v_'+c.id+'">'+fmtU(c.value,c.unit)+'</b></div><input type="range" id="i_'+c.id+'" min="'+c.min+'" max="'+c.max+'" step="'+c.step+'" value="'+c.value+'"><div class="rng"><span>'+fmtU(c.min,c.unit)+'</span><span>'+fmtU(c.max,c.unit)+'</span></div>'+(c.hint?'<p class="hint">'+c.hint+'</p>':'')+'</div>';
+  }else if(c.type==='select'){S[c.id]=c.options[0][0];
+   html+='<div class="fld" id="'+wrapId+'"><label>'+c.label+'</label><select class="sin" id="i_'+c.id+'">'+c.options.map(function(o){return '<option value="'+o[0]+'">'+o[1]+'</option>';}).join('')+'</select>'+(c.hint?'<p class="hint">'+c.hint+'</p>':'')+'</div>';
+  }else if(c.type==='radio'){S[c.id]=c.options[0][0];
+   html+='<div class="fld" id="'+wrapId+'"><label>'+c.label+'</label><div class="ropt">'+c.options.map(function(o,i){return '<div class="ro'+(i===0?' on':'')+'" data-v="'+o[0]+'"><span class="dot"></span><span>'+o[1]+'</span></div>';}).join('')+'</div></div>';
+  }
+ });
+ ctrls.innerHTML=html;
+ T.controls.forEach(function(c){
+  if(c.type==='pill'){document.getElementById('ctl_'+c.id).querySelectorAll('button').forEach(function(b){b.onclick=function(){var p=b.parentNode;p.querySelectorAll('button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');S[c.id]=b.getAttribute('data-v');upd(key);};});}
+  else if(c.type==='radio'){document.getElementById('ctl_'+c.id).querySelectorAll('.ro').forEach(function(r){r.onclick=function(){var p=r.parentNode;p.querySelectorAll('.ro').forEach(function(x){x.classList.remove('on');});r.classList.add('on');S[c.id]=r.getAttribute('data-v');upd(key);};});}
+  else if(c.type==='range'){var el=document.getElementById('i_'+c.id);el.oninput=function(){S[c.id]=+el.value;var vb=document.getElementById('v_'+c.id);if(vb)vb.textContent=fmtU(+el.value,c.unit);upd(key);};}
+  else if(c.type==='select'){var s2=document.getElementById('i_'+c.id);s2.onchange=function(){S[c.id]=s2.value;upd(key);};}
+ });
+ upd(key);
+}
+function upd(key){
+ var T=TAX[key];
+ T.controls.forEach(function(c){if(c.show){var w=document.getElementById('ctl_'+c.id);if(w)w.style.display=c.show(S)?'':'none';}});
+ var r=T.compute(S);
+ document.getElementById('btab').innerHTML='<div class="bhd"><div>내역 항목</div><div>상세 내용</div></div>'+r.rows.map(function(row){return '<div class="brow'+(row[2]==='hl'?' hl':'')+'"><div>'+row[0]+'</div><div>'+row[1]+'</div></div>';}).join('');
+ document.getElementById('scards').innerHTML=r.cards.map(function(c){return '<div class="scard'+(c.k==='red'?' red':c.k==='green'?' green':'')+'"><div class="l">'+c.l+'</div><div class="n">'+c.v+'</div></div>';}).join('');
+ document.getElementById('note').textContent=r.note;
+}
+document.getElementById('ttabs').addEventListener('click',function(e){var b=e.target.closest('.tt');if(!b)return;document.querySelectorAll('.tt').forEach(function(t){t.classList.remove('on');});b.classList.add('on');build(b.getAttribute('data-k'));});
+build('jongso');
+</script>
+</body>
+</html>

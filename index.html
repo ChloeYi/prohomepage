@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>프로 홈페이지 | 변호사·세무사 사무실 홈페이지 제작</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2E6BE6; --blue-d:#1B4FBF; --teal:#0E9594; --navy:#1B2540;
+  --ink:#1f2733; --gray:#5b6577; --line:#e7ecf5;
+  --bg:#f6f9ff; --card:#ffffff; --soft:#eef3fe; --soft2:#e7f5f4;
+  --shadow:0 18px 50px rgba(31,77,191,.12);
+  --shadow-sm:0 8px 24px rgba(31,77,191,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* blobs */
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:0;pointer-events:none}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,#bcd2ff,transparent 70%);top:-120px;left:-140px;animation:drift1 18s ease-in-out infinite}
+.blob.b2{width:460px;height:460px;background:radial-gradient(circle,#bdeee8,transparent 70%);top:340px;right:-160px;animation:drift2 22s ease-in-out infinite}
+.blob.b3{width:400px;height:400px;background:radial-gradient(circle,#d6c9ff,transparent 70%);bottom:300px;left:30%;animation:drift1 26s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,50px) scale(1.1)}}
+.ticker,nav,.hero,section,footer{position:relative;z-index:1}
+
+/* ticker */
+.ticker{background:var(--navy);color:#cdd7ee;font-size:13px;overflow:hidden}
+.ticker .track{display:flex;align-items:center;height:38px;white-space:nowrap;width:max-content;animation:marquee 30s linear infinite}
+.ticker:hover .track{animation-play-state:paused}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker b{color:#fff}.ticker .up{color:#5ee0b0;font-weight:700}
+.tk{display:flex;gap:7px;align-items:center;padding:0 22px;border-right:1px solid rgba(255,255,255,.08)}
+.dot{width:7px;height:7px;border-radius:50%;background:#5ee0b0;animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(94,224,176,.5)}70%{box-shadow:0 0 0 7px rgba(94,224,176,0)}100%{box-shadow:0 0 0 0 rgba(94,224,176,0)}}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(246,249,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:68px;gap:30px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.logo .b{color:var(--blue)}
+.logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;color:#fff;font-size:14px;font-weight:800}
+.menu{display:flex;gap:19px;font-size:14.5px;font-weight:600;color:var(--gray)}
+.menu a{position:relative;padding:4px 0;white-space:nowrap;transition:.15s}
+.menu a:hover{color:var(--blue)}
+.menu a.active{color:var(--blue)}
+.menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--blue)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:12px;transition:.18s;font-size:15px}
+.btn-primary{background:var(--blue);color:#fff;padding:12px 22px;position:relative;overflow:hidden}
+.btn-primary:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 10px 24px rgba(46,107,230,.35)}
+.btn-primary::after{content:"";position:absolute;top:0;left:-130%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,100%{left:-130%}55%{left:160%}}
+.btn-ghost{background:#fff;color:var(--ink);padding:12px 20px;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+@media(max-width:1240px){
+  nav .wrap{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:10px;gap:10px 14px}
+  .menu{order:3;width:100%;flex-wrap:wrap;gap:10px 18px;padding-top:9px;border-top:1px solid var(--line)}
+  .nav-cta{margin-left:auto}
+}
+
+/* hero */
+.hero{padding:64px 0 40px}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.pill{display:inline-flex;gap:8px;align-items:center;background:var(--soft);color:var(--blue);font-weight:700;font-size:14px;padding:8px 15px;border-radius:999px;margin-bottom:22px;animation:pillPulse 2.6s ease-in-out infinite}
+@keyframes pillPulse{0%,100%{box-shadow:0 0 0 0 rgba(46,107,230,0)}50%{box-shadow:0 0 0 6px rgba(46,107,230,.07)}}
+h1{font-size:50px;line-height:1.2;letter-spacing:-1.5px;font-weight:800}
+h1 .c{background:linear-gradient(90deg,var(--blue),var(--teal),#7b5cff,var(--blue));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:flow 5s linear infinite}
+@keyframes flow{to{background-position:300% 0}}
+.hero-line{display:inline-block;opacity:0;transform:translateY(22px);animation:wordIn .7s forwards}
+.hero-line:nth-child(2){animation-delay:.12s}.hero-line:nth-child(3){animation-delay:.24s}
+@keyframes wordIn{to{opacity:1;transform:none}}
+.lead{margin:22px 0 18px;color:var(--gray);font-size:18px;max-width:530px}
+.feats{display:flex;gap:18px;margin:18px 0 26px;flex-wrap:wrap}
+.feats span{display:flex;gap:7px;align-items:center;font-weight:600;color:var(--navy);font-size:15px}
+.feats .ic{width:22px;height:22px;border-radius:6px;background:var(--soft2);color:var(--teal);display:grid;place-items:center;font-size:13px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:920px){.hero .grid{grid-template-columns:1fr;gap:34px}h1{font-size:36px}}
+
+/* mock site preview */
+.preview{background:var(--card);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line);animation:bob 5s ease-in-out infinite;transition:transform .15s ease;will-change:transform}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+.pv-bar{background:#f1f4fb;padding:11px 16px;display:flex;gap:7px;align-items:center;border-bottom:1px solid var(--line)}
+.pv-bar i{width:11px;height:11px;border-radius:50%;background:#dbe2ef}
+.pv-bar .url{margin-left:10px;background:#fff;border:1px solid var(--line);border-radius:7px;font-size:12px;color:var(--gray);padding:4px 12px}
+.pv-body{padding:22px}
+.pv-hero{background:linear-gradient(135deg,var(--navy),var(--blue-d));border-radius:14px;padding:22px;color:#fff;display:flex;gap:16px;align-items:center}
+.pv-photo{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#5ee0b0,#2E6BE6);flex:0 0 64px;display:grid;place-items:center;font-size:30px}
+.pv-hero h4{font-size:18px;margin-bottom:2px}
+.pv-hero p{font-size:12.5px;color:#c9d6f3}
+.pv-row{display:flex;gap:10px;margin-top:14px}
+.pv-chip{flex:1;background:var(--soft);border-radius:10px;padding:12px;text-align:center;font-size:12.5px;font-weight:700;color:var(--navy)}
+.pv-chip b{display:block;font-size:18px;color:var(--blue)}
+.pv-chat{margin-top:14px;background:#fbfcff;border:1px solid var(--line);border-radius:12px;padding:12px}
+.pv-msg{font-size:12.5px;background:var(--soft);border-radius:10px;padding:8px 11px;display:inline-block;margin-bottom:6px;max-width:90%}
+.pv-msg.me{background:var(--blue);color:#fff;float:right;clear:both}
+.pv-msg.bot{clear:both}
+
+/* sections */
+section.block{padding:76px 0}
+.eyebrow{color:var(--teal);font-weight:800;font-size:14px;letter-spacing:.5px;text-align:center}
+h2{font-size:36px;line-height:1.25;letter-spacing:-1px;font-weight:800;text-align:center;margin:10px 0 14px}
+.sub{text-align:center;color:var(--gray);font-size:17px;max-width:640px;margin:0 auto 46px}
+@media(max-width:860px){h2{font-size:27px}}
+
+/* feature grid (homepage 구성) */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;box-shadow:var(--shadow-sm);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.fcard:hover{transform:translateY(-9px);box-shadow:var(--shadow);border-color:#cfe0ff}
+.fcard:hover .emo{transform:rotate(-8deg) scale(1.1)}
+.fcard .emo{width:50px;height:50px;border-radius:14px;background:var(--soft);display:grid;place-items:center;font-size:25px;margin-bottom:15px;transition:.3s}
+.fcard h3{font-size:18px;margin-bottom:7px}
+.fcard p{color:var(--gray);font-size:14.5px}
+@media(max-width:860px){.fgrid{grid-template-columns:1fr}}
+
+/* chatbot explainer */
+.bot-sec{background:linear-gradient(180deg,#fff,#eef4ff)}
+.bot-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.bot-wrap h2{text-align:left;margin-top:6px}
+.bot-wrap .sub{text-align:left;margin:0 0 22px}
+.bot-list{list-style:none;display:flex;flex-direction:column;gap:14px}
+.bot-list li{display:flex;gap:13px;align-items:flex-start}
+.bot-list .ic{flex:0 0 38px;width:38px;height:38px;border-radius:11px;background:var(--soft2);color:var(--teal);display:grid;place-items:center;font-size:19px}
+.bot-list b{display:block;font-size:16px}
+.bot-list span{color:var(--gray);font-size:14.5px}
+.demo{background:var(--card);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;border:1px solid var(--line)}
+.demo-top{background:linear-gradient(135deg,var(--blue),var(--teal));color:#fff;padding:15px 18px;display:flex;align-items:center;gap:11px}
+.bot-ava{width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.22);display:grid;place-items:center;font-size:21px}
+.demo-top .t{font-weight:700;font-size:15px}
+.demo-top .s{font-size:12px;opacity:.9;display:flex;gap:6px;align-items:center}
+.demo-top .s .live{width:7px;height:7px;border-radius:50%;background:#5ee0b0}
+.demo-body{padding:18px;min-height:230px;display:flex;flex-direction:column;gap:11px;background:#fbfcff}
+.msg{max-width:84%;padding:10px 14px;border-radius:14px;font-size:14px;line-height:1.5;animation:rise .35s ease}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.msg.bot{background:var(--soft);color:var(--ink);border-bottom-left-radius:5px;align-self:flex-start}
+.msg.me{background:var(--blue);color:#fff;border-bottom-right-radius:5px;align-self:flex-end}
+.typing{display:flex;gap:4px;padding:12px 15px;background:var(--soft);border-radius:14px;align-self:flex-start;width:fit-content}
+.typing i{width:7px;height:7px;border-radius:50%;background:#9fb3d8;animation:blink 1.2s infinite}
+.typing i:nth-child(2){animation-delay:.2s}.typing i:nth-child(3){animation-delay:.4s}
+@keyframes blink{0%,60%,100%{opacity:.3}30%{opacity:1}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:13px 18px;border-top:1px solid var(--line);background:#fff}
+.chip{background:#fff;border:1px solid var(--line);color:var(--navy);font-weight:600;font-size:12.5px;padding:8px 12px;border-radius:999px;cursor:pointer;transition:.15s;font-family:inherit}
+.chip:hover{border-color:var(--blue);color:var(--blue);background:var(--soft);transform:translateY(-2px)}
+@media(max-width:860px){.bot-wrap{grid-template-columns:1fr;gap:28px}}
+
+/* about / story */
+.about-sec{background:linear-gradient(180deg,#fff,#eef4ff)}
+.about-body{max-width:720px;margin:0 auto;text-align:center}
+.about-body p{font-size:17px;color:var(--gray);margin-bottom:18px;line-height:1.78}
+.about-body p b{color:var(--ink)}
+.pullquote{font-size:23px;font-weight:800;letter-spacing:-.5px;color:var(--navy);line-height:1.55;margin:30px auto;padding:22px 26px;border-left:4px solid var(--blue);background:var(--soft);border-radius:0 14px 14px 0;text-align:left;max-width:700px}
+.about-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:46px auto 0}
+.about-mini .am{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:var(--shadow-sm);transition:.25s}
+.about-mini .am:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.about-mini .am .e{font-size:30px}
+.about-mini .am b{display:block;font-size:16px;margin:9px 0 5px}
+.about-mini .am p{color:var(--gray);font-size:14px}
+@media(max-width:860px){.about-mini{grid-template-columns:1fr}.pullquote{font-size:19px}}
+
+/* calculator */
+.calc{background:var(--card);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.calc-in{padding:36px}
+.calc-in .fld{margin-bottom:24px}
+.calc-in label{display:flex;justify-content:space-between;font-weight:700;font-size:15px;margin-bottom:10px}
+.calc-in label .v{color:var(--blue)}
+input[type=range]{width:100%;-webkit-appearance:none;height:7px;border-radius:5px;background:var(--soft);outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--blue);cursor:pointer;box-shadow:0 3px 8px rgba(46,107,230,.4);transition:.15s}
+input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.calc-out{background:linear-gradient(150deg,var(--navy),var(--blue-d));color:#fff;padding:36px;display:flex;flex-direction:column;justify-content:center}
+.calc-out .big{font-size:13px;color:#a9bdf0;font-weight:700;letter-spacing:.5px}
+.calc-out .money{font-size:46px;font-weight:800;letter-spacing:-1.5px;margin:4px 0 2px}
+.calc-out .money span{font-size:22px}
+.calc-row{display:flex;gap:14px;margin-top:22px}
+.calc-row .box{flex:1;background:rgba(255,255,255,.1);border-radius:13px;padding:15px}
+.calc-row .box .n{font-size:24px;font-weight:800}
+.calc-row .box .l{font-size:12px;color:#c9d6f3;margin-top:2px}
+.calc-note{font-size:12px;color:#9fb3d8;margin-top:20px;line-height:1.5}
+@media(max-width:860px){.calc{grid-template-columns:1fr}}
+
+/* steps + zoom */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative}
+.step .n{counter-increment:s;width:38px;height:38px;border-radius:11px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:17px;margin-bottom:14px;transition:.3s}
+.step:hover .n{transform:rotate(8deg) scale(1.12)}
+.step .n::before{content:counter(s)}
+.step h3{font-size:16px;margin-bottom:6px}.step p{color:var(--gray);font-size:14px}
+.zoom-banner{margin-top:26px;background:linear-gradient(135deg,var(--soft),var(--soft2));border:1px solid #cfe0ff;border-radius:18px;padding:22px 26px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.zoom-banner .zic{font-size:34px}
+.zoom-banner b{font-size:17px}
+.zoom-banner p{color:var(--gray);font-size:14.5px}
+.zoom-banner .btn{margin-left:auto}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr}.zoom-banner .btn{margin-left:0;width:100%}}
+
+/* portfolio */
+.port-sec{background:linear-gradient(180deg,#eef4ff,#fff)}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow-sm);transition:.25s}
+.pcard:hover{transform:translateY(-8px);box-shadow:var(--shadow)}
+.pthumb{height:150px;display:grid;place-items:center;font-size:46px;color:#fff;position:relative}
+.pthumb .tagk{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.85);color:var(--navy);font-size:12px;font-weight:700;padding:4px 11px;border-radius:999px}
+.pthumb .viewk{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,.6);color:#fff;font-size:18px;font-weight:800;padding:9px 18px;border-radius:999px;opacity:0;transform:translateY(6px);transition:opacity .25s;transform-origin:center;will-change:transform}
+a.pcard:hover .viewk{opacity:1;animation:viewkShake .5s cubic-bezier(.36,.07,.19,.97) infinite}
+@keyframes viewkShake{
+  0%,100%{transform:translateX(0) rotate(0)}
+  12%{transform:translateX(-6px) rotate(-5deg) scale(1.08)}
+  24%{transform:translateX(6px) rotate(5deg) scale(1.08)}
+  36%{transform:translateX(-5px) rotate(-4deg) scale(1.06)}
+  48%{transform:translateX(5px) rotate(4deg) scale(1.06)}
+  60%{transform:translateX(-3px) rotate(-2deg) scale(1.04)}
+  72%{transform:translateX(3px) rotate(2deg) scale(1.04)}
+  84%{transform:translateX(-1px) rotate(-1deg)}
+}
+a.pcard{cursor:pointer}
+.pt1{background:linear-gradient(135deg,#2E6BE6,#0E9594)}
+.pt2{background:linear-gradient(135deg,#7b5cff,#2E6BE6)}
+.pt3{background:linear-gradient(135deg,#0E9594,#5ee0b0)}
+.pt4{background:linear-gradient(135deg,#1B2540,#2E6BE6)}
+.pt5{background:linear-gradient(135deg,#e0793c,#f0b53c)}
+.pt6{background:linear-gradient(135deg,#2E6BE6,#7b5cff)}
+.pcard .pinfo{padding:18px}
+.pcard h3{font-size:16px;margin-bottom:4px}
+.pcard p{color:var(--gray);font-size:13.5px}
+.port-note{text-align:center;color:var(--gray);font-size:14px;margin-top:26px}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr}}
+
+/* pricing */
+.price-sec{background:linear-gradient(180deg,#fff,#eef4ff)}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:stretch}
+.plan{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:32px 28px;display:flex;flex-direction:column}
+.plan.best{border:2px solid var(--blue);box-shadow:var(--shadow);position:relative;animation:floatBest 4.5s ease-in-out infinite}
+@keyframes floatBest{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.plan.best:hover{animation-play-state:paused}
+.plan.best .badge{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--blue);color:#fff;font-size:12.5px;font-weight:700;padding:5px 14px;border-radius:999px}
+.plan h3{font-size:20px}
+.plan .desc{color:var(--gray);font-size:14px;margin:4px 0 18px}
+.plan .price{font-size:33px;font-weight:800;letter-spacing:-1px}
+.plan .price small{font-size:15px;color:var(--gray);font-weight:600}
+.bp{filter:blur(9px);user-select:none;-webkit-user-select:none;pointer-events:none}
+.lockhint{font-size:12.5px;color:var(--gray);font-weight:600;margin-top:8px;display:flex;align-items:center;gap:5px}
+.lockhint .lk{color:var(--blue)}
+.plan .mfee{font-size:13px;color:var(--teal);font-weight:700;margin-top:6px}
+.plan ul{list-style:none;margin:18px 0 24px;display:flex;flex-direction:column;gap:10px;font-size:14.5px}
+.plan li{display:flex;gap:9px}.plan li .ck{color:var(--teal);font-weight:800}
+.plan .btn{width:100%;margin-top:auto;padding:13px}
+.addon{max-width:760px;margin:26px auto 0;background:var(--card);border:1px dashed #b9cdf5;border-radius:16px;padding:18px 24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.addon .em{font-size:28px}.addon b{font-size:16px}.addon p{color:var(--gray);font-size:14px}
+.addon .pr{margin-left:auto;font-weight:800;color:var(--blue);font-size:20px}
+@media(max-width:860px){.plans{grid-template-columns:1fr}.addon .pr{margin-left:0}}
+
+/* policy */
+.polgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.pol{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;display:flex;gap:14px}
+.pol .ic{flex:0 0 40px;width:40px;height:40px;border-radius:11px;background:var(--soft);color:var(--blue);display:grid;place-items:center;font-size:20px}
+.pol b{font-size:15.5px}.pol p{color:var(--gray);font-size:14px;margin-top:2px}
+@media(max-width:860px){.polgrid{grid-template-columns:1fr}}
+
+/* contact form */
+.contact-sec{background:linear-gradient(180deg,#eef4ff,#fff)}
+.form-card{max-width:740px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:38px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.field label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}
+.field label .req{color:#e0563c}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:14.5px;background:#fbfcff;transition:.15s}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(46,107,230,.1)}
+.field textarea{resize:vertical;min-height:90px}
+.checks{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px}
+.chk{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:14px;cursor:pointer;font-weight:600;color:var(--navy);transition:.15s;user-select:none}
+.chk:hover{border-color:var(--blue)}
+.chk input{width:auto;accent-color:var(--blue)}
+.chk.on{background:var(--soft);border-color:var(--blue);color:var(--blue)}
+.zoomopt{display:flex;gap:12px;margin-top:4px;flex-wrap:wrap}
+.zoomopt .chk{flex:1;justify-content:center;min-width:140px}
+.form-card .btn-primary{width:100%;padding:15px;font-size:16px;margin-top:10px}
+.form-msg{display:none;text-align:center;padding:30px}
+.form-msg .ok{font-size:46px}
+.form-msg h3{font-size:22px;margin:10px 0 6px}
+.form-msg p{color:var(--gray)}
+.privacy{font-size:12px;color:var(--gray);text-align:center;margin-top:14px}
+.contact-direct{text-align:center;margin-top:22px;color:var(--gray);font-size:15px}
+.contact-direct a{color:var(--blue);font-weight:700}
+@media(max-width:860px){.frow{grid-template-columns:1fr}.form-card{padding:26px}}
+
+/* final */
+.final{background:linear-gradient(135deg,var(--navy),var(--blue-d));border-radius:28px;padding:60px 40px;text-align:center;color:#fff}
+.final h2{color:#fff}.final .sub{color:#c9d6f3}
+.final .btn-primary{background:#fff;color:var(--blue);font-size:17px;padding:16px 32px}
+.final .btn-primary:hover{background:#eef3fe}
+.final .btn-primary::after{display:none}
+
+/* footer */
+footer{padding:46px 0 70px;color:var(--gray);font-size:14px;text-align:center}
+footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(34px) scale(.97);transition:.8s cubic-bezier(.16,.84,.34,1)}
+.rv.in{opacity:1;transform:none}
+
+/* popup modal */
+.modal-ov{position:fixed;inset:0;background:rgba(20,30,55,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px;animation:ovIn .3s}
+.modal-ov.show{display:flex}
+@keyframes ovIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:24px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:mIn .45s cubic-bezier(.2,.8,.2,1);position:relative}
+@keyframes mIn{from{opacity:0;transform:translateY(34px) scale(.95)}to{opacity:1;transform:none}}
+.modal .x{position:absolute;top:14px;right:15px;background:rgba(255,255,255,.22);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;z-index:2;transition:.15s}
+.modal .x:hover{background:rgba(255,255,255,.4)}
+.modal-top{background:linear-gradient(135deg,var(--navy),var(--blue-d));color:#fff;padding:28px 28px 24px;text-align:center}
+.modal-top .tag{display:inline-block;background:rgba(94,224,176,.2);color:#5ee0b0;font-weight:700;font-size:13px;padding:5px 14px;border-radius:999px;margin-bottom:12px;animation:pillPulse 2.4s ease-in-out infinite}
+.modal-top h3{font-size:24px;letter-spacing:-.5px;line-height:1.32}
+.modal-top h3 b{color:#5ee0b0}
+.modal-top p{font-size:13.5px;color:#c9d6f3;margin-top:9px}
+.modal-bd{padding:22px 28px 24px}
+.modal-bd .benefit{display:flex;gap:9px;align-items:center;font-size:14.5px;font-weight:600;margin-bottom:11px;color:var(--navy)}
+.modal-bd .benefit .c{color:var(--teal);font-weight:800}
+.modal-form{margin-top:18px;display:flex;gap:8px}
+.modal-form input{flex:1;border:1px solid var(--line);border-radius:11px;padding:12px 14px;font-family:inherit;font-size:14.5px;background:#fbfcff}
+.modal-form input:focus{outline:none;border-color:var(--blue);background:#fff;box-shadow:0 0 0 4px rgba(46,107,230,.1)}
+.modal-form button{padding:12px 18px;white-space:nowrap}
+.modal-priv{font-size:11.5px;color:var(--gray);text-align:center;margin-top:12px}
+.modal-foot{display:flex;justify-content:space-between;align-items:center;padding:0 28px 20px;font-size:13px}
+.modal-foot a{color:var(--gray);cursor:pointer}.modal-foot a:hover{color:var(--blue)}
+.modal-ok{display:none;text-align:center;padding:24px 28px 32px}
+.modal-ok .e{font-size:44px}
+.modal-ok h3{font-size:21px;margin:8px 0 4px}.modal-ok p{color:var(--gray)}
+
+/* float */
+.float{position:fixed;right:22px;bottom:22px;background:var(--blue);color:#fff;border:none;cursor:pointer;font-family:inherit;font-weight:700;padding:14px 20px;border-radius:999px;box-shadow:var(--shadow);display:flex;gap:9px;align-items:center;z-index:60}
+.float:hover{background:var(--blue-d);transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<!-- ticker -->
+<div class="ticker"><div class="track" id="tkTrack">
+  <span class="tk"><span class="dot"></span><b>실시간</b></span>
+  <span class="tk">평균 제작 기간 <b>7일</b></span>
+  <span class="tk">월 관리비 <b>상담 시 안내</b></span>
+  <span class="tk">모바일 방문 비중 <b class="up">71%</b></span>
+  <span class="tk">홈페이지 도입 사무소 <b class="up">증가 추세</b></span>
+  <span class="tk">상담 전환율 평균 <b class="up">+38%</b></span>
+  <span class="tk">Zoom 미팅 <b>15분</b>이면 시작</span>
+</div></div>
+
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+
+<!-- nav -->
+<nav><div class="wrap">
+  <div class="logo"><span class="mark">P</span>프로<span class="b">홈페이지</span></div>
+  <div class="menu">
+    <a href="about.html">소개</a>
+    <a href="#include">홈페이지 구성</a>
+    <a href="#bot">AI 챗봇</a>
+    <a href="#calc">효과 계산기</a>
+    <a href="#how">진행 방식</a>
+    <a href="portfolio.html">포트폴리오</a>
+    <a href="#price">가격</a>
+    <a href="#policy">이용 안내</a>
+    <a href="#contact">문의</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn btn-primary" onclick="goContact()">무료 상담 신청</button>
+  </div>
+</div></nav>
+
+<!-- hero -->
+<header class="hero"><div class="wrap"><div class="grid">
+  <div class="rv in">
+    <span class="pill">⚖️ 변호사 · 변리사 · 세무사 사무실 전용</span>
+    <h1><span class="hero-line">의뢰인의 신뢰를 만드는</span><br><span class="hero-line"><span class="c">사무실 홈페이지</span>를</span> <span class="hero-line">만들어 드립니다.</span></h1>
+    <p class="lead">약력·업무분야·상담예약부터 24시간 응대하는 AI 챗봇까지. 전문직 사무소에 꼭 맞는 홈페이지를 코딩 없이, 평균 7일이면 완성합니다.</p>
+    <div class="feats">
+      <span><i class="ic">✓</i>전문 약력·업무분야 페이지</span>
+      <span><i class="ic">✓</i>상담 예약·문의 자동화</span>
+      <span><i class="ic">✓</i>AI 상담 챗봇 옵션</span>
+    </div>
+    <div class="hero-cta">
+      <button class="btn btn-primary" onclick="goContact()">무료 상담 신청하기 →</button>
+      <button class="btn btn-ghost" onclick="document.getElementById('calc').scrollIntoView()">효과부터 계산해보기</button>
+    </div>
+  </div>
+
+  <!-- mock site preview -->
+  <div class="preview rv in" id="preview">
+    <div class="pv-bar"><i></i><i></i><i></i><span class="url">www.○○법률사무소.kr</span></div>
+    <div class="pv-body">
+      <div class="pv-hero">
+        <div class="pv-photo">👨‍⚖️</div>
+        <div><h4>변호사 김○○</h4><p>민사·상속·부동산 전문 · 15년 경력</p></div>
+      </div>
+      <div class="pv-row">
+        <div class="pv-chip">상속<b>전문</b></div>
+        <div class="pv-chip">상담<b>예약</b></div>
+        <div class="pv-chip">15년<b>경력</b></div>
+      </div>
+      <div class="pv-chat">
+        <div class="pv-msg bot">안녕하세요, 무엇을 도와드릴까요?</div>
+        <div class="pv-msg me">상속 상담 받고 싶어요</div>
+      </div>
+    </div>
+  </div>
+</div></div></header>
+
+<!-- 홈페이지 구성 -->
+<section class="block" id="include"><div class="wrap">
+  <p class="eyebrow rv">홈페이지에 담기는 것</p>
+  <h2 class="rv">전문직 사무실에 꼭 필요한 것만, 빠짐없이.</h2>
+  <p class="sub rv">‘있어 보이는’ 홈페이지가 아니라, 의뢰인이 신뢰하고 상담을 신청하게 만드는 구성입니다.</p>
+  <div class="fgrid">
+    <div class="fcard rv"><div class="emo">👤</div><h3>전문 약력·경력</h3><p>학력·자격·주요 수행 사례를 신뢰감 있게. 의뢰인이 가장 먼저 확인하는 페이지입니다.</p></div>
+    <div class="fcard rv"><div class="emo">📂</div><h3>업무분야 소개</h3><p>상속·이혼·세무조사 등 분야별로 정리해, 내 사건을 다루는 곳임을 한눈에 보여줍니다.</p></div>
+    <div class="fcard rv"><div class="emo">📅</div><h3>상담 예약·문의</h3><p>전화 없이도 신청 가능한 예약 폼. 야간·주말 문의도 자동으로 접수됩니다.</p></div>
+    <div class="fcard rv"><div class="emo">🤖</div><h3>AI 상담 챗봇</h3><p>비용·절차·필요서류 같은 반복 질문을 24시간 대신 응대 <b>(옵션)</b>.</p></div>
+    <div class="fcard rv"><div class="emo">💬</div><h3>후기·신뢰 요소</h3><p>의뢰인 후기, 언론 보도, 자격 인증으로 ‘믿을 수 있는 곳’이라는 확신을 줍니다.</p></div>
+    <div class="fcard rv"><div class="emo">📱</div><h3>모바일 최적화</h3><p>방문자 70% 이상이 모바일. 휴대폰에서도 깔끔하게 보이도록 기본 제공합니다.</p></div>
+  </div>
+</div></section>
+
+<!-- AI 챗봇 설명 -->
+<section class="block bot-sec" id="bot"><div class="wrap">
+  <div class="bot-wrap">
+    <div class="rv">
+      <p class="eyebrow" style="text-align:left">AI 상담 챗봇 (옵션)</p>
+      <h2>상담은 챗봇이, 결정은 전문가가.</h2>
+      <p class="sub">우리 사무소 자료로 학습한 AI가 1차 상담을 받아, 사장님의 시간을 사건에 쓰도록 돕습니다.</p>
+      <ul class="bot-list">
+        <li><span class="ic">🌙</span><div><b>24시간 1차 응대</b><span>퇴근 후·주말 문의도 봇이 받아 접수해 둡니다.</span></div></li>
+        <li><span class="ic">📚</span><div><b>내 분야 자료로 학습</b><span>사무소 FAQ·업무분야·서식을 학습해 정확히 안내합니다.</span></div></li>
+        <li><span class="ic">🛡️</span><div><b>답변 검수 설계</b><span>민감한 질문은 ‘전문가 연결’로 넘기도록 안전하게 설계합니다.</span></div></li>
+        <li><span class="ic">📥</span><div><b>상담 자동 접수</b><span>대화 끝에 연락처를 받아 상담 신청까지 이어줍니다.</span></div></li>
+      </ul>
+      <a class="btn btn-ghost" href="chatbot.html" style="margin-top:18px">챗봇 전용 페이지 자세히 보기 →</a>
+    </div>
+    <div class="demo rv">
+      <div class="demo-top"><div class="bot-ava">🤖</div>
+        <div><div class="t">○○법률사무소 상담봇</div>
+          <div class="s"><span class="live"></span>지금 응답 가능 · 평균 3초</div></div></div>
+      <div class="demo-body" id="chat"><div class="msg bot">안녕하세요! 무엇을 도와드릴까요? 아래 질문을 눌러보세요 👇</div></div>
+      <div class="chips" id="chips">
+        <button class="chip" data-q="상속 상담 비용이 궁금해요">상속 상담 비용이 궁금해요</button>
+        <button class="chip" data-q="주말에도 상담 신청되나요?">주말에도 상담 신청되나요?</button>
+        <button class="chip" data-q="필요한 서류가 뭔가요?">필요한 서류가 뭔가요?</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<!-- 효과 계산기 -->
+<section class="block" id="calc"><div class="wrap">
+  <p class="eyebrow rv">효과 계산기</p>
+  <h2 class="rv">홈페이지 하나로 얼마나 더 벌 수 있을까요?</h2>
+  <p class="sub rv">슬라이더를 움직여, 우리 사무소 상황에 맞는 예상 효과를 확인해 보세요.</p>
+  <div class="calc rv">
+    <div class="calc-in">
+      <div class="fld">
+        <label>월 평균 신규 상담 문의 <span class="v"><span id="vInq">40</span>건</span></label>
+        <input type="range" id="inq" min="5" max="200" value="40">
+      </div>
+      <div class="fld">
+        <label>상담 1건당 평균 수임료 <span class="v"><span id="vFee">50</span>만원</span></label>
+        <input type="range" id="fee" min="5" max="500" step="5" value="50">
+      </div>
+      <div class="fld">
+        <label>지금 놓치는 문의 비율 (야간·주말·부재중) <span class="v"><span id="vMiss">30</span>%</span></label>
+        <input type="range" id="miss" min="0" max="70" value="30">
+      </div>
+      <p style="font-size:13px;color:var(--gray)">* 야간·주말 문의 자동 접수와 빠른 상담 응대로 회복되는 매출을 추정합니다.</p>
+    </div>
+    <div class="calc-out">
+      <div class="big">예상 월 추가 매출</div>
+      <div class="money"><span id="mMonthly">0</span><span> 만원</span></div>
+      <div class="calc-row">
+        <div class="box"><div class="n" id="mInq">0건</div><div class="l">월 추가 확보 문의</div></div>
+        <div class="box"><div class="n" id="mYear">0만원</div><div class="l">연 환산 추가 매출</div></div>
+        <div class="box"><div class="n" id="mPay">—</div><div class="l">제작비 회수 기간</div></div>
+      </div>
+      <p class="calc-note">가정: 놓친 문의의 60%를 챗봇·예약폼이 접수, 상담→수임 전환율 15%, 표준형 제작비 기준. 실제와 다를 수 있는 참고용 추정치입니다.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 작동 방식 + Zoom -->
+<section class="block" id="how"><div class="wrap">
+  <p class="eyebrow rv">진행 방식</p>
+  <h2 class="rv">줌(Zoom) 미팅 한 번이면, 일주일 뒤 오픈.</h2>
+  <p class="sub rv">복잡한 셋업은 저희가 합니다. 사장님은 자료만 주시면 됩니다.</p>
+  <div class="steps">
+    <div class="step rv"><div class="n"></div><h3>무료 Zoom 상담</h3><p>15분 화상 미팅으로 원하는 구성과 분위기를 듣습니다.</p></div>
+    <div class="step rv"><div class="n"></div><h3>자료 전달</h3><p>약력·사진·업무분야 자료를 전달(없으면 템플릿으로 진행).</p></div>
+    <div class="step rv"><div class="n"></div><h3>시안 확인·수정</h3><p>디자인 시안을 보고 2회까지 무료로 수정합니다.</p></div>
+    <div class="step rv"><div class="n"></div><h3>오픈 & 관리</h3><p>도메인 연결 후 오픈. 이후 합리적인 월 관리비로 운영합니다.</p></div>
+  </div>
+  <div class="zoom-banner rv">
+    <span class="zic">📹</span>
+    <div><b>방문 없이 Zoom으로 빠르게 진행</b><p>전국 어디서나 화상으로 상담하고, 평균 7일 안에 받아보세요. (자료가 준비되면 최短 3일)</p></div>
+    <button class="btn btn-primary" onclick="goContact()">Zoom 미팅 잡기</button>
+  </div>
+</div></section>
+
+<!-- 포트폴리오 -->
+<section class="block port-sec" id="port"><div class="wrap">
+  <p class="eyebrow rv">포트폴리오</p>
+  <h2 class="rv">이런 사무실 홈페이지를 만듭니다.</h2>
+  <p class="sub rv">직군과 분위기에 맞춰, 신뢰감과 전환을 모두 잡는 디자인.</p>
+  <div class="pgrid">
+    <a class="pcard rv" href="portfolio-lawyer.html" target="_blank"><div class="pthumb pt1">⚖️<span class="tagk">변호사</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>정도 법률사무소</h3><p>형사·가사·상속 · 사건 안내 + 상담 신청 · <b>클릭하면 열려요</b></p></div></a>
+    <a class="pcard rv" href="portfolio-tax.html" target="_blank"><div class="pthumb pt2">🧾<span class="tagk">세무사</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>한결 세무회계</h3><p>법인·양도세 · 모의계산 + 상담 신청 · <b>클릭하면 열려요</b></p></div></a>
+    <a class="pcard rv" href="portfolio-patent.html" target="_blank"><div class="pthumb pt3">💡<span class="tagk">변리사</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>온특허 특허법률</h3><p>상표·특허 · 진행현황 + 무료 진단 · <b>클릭하면 열려요</b></p></div></a>
+    <a class="pcard rv" href="portfolio-labor.html" target="_blank"><div class="pthumb pt4">📋<span class="tagk">노무사</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>내편 노무사</h3><p>부당해고·임금체불 · 근로자/사업주 · <b>클릭하면 열려요</b></p></div></a>
+    <a class="pcard rv" href="portfolio-clinic.html" target="_blank"><div class="pthumb pt5">🩺<span class="tagk">의원</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>온하루의원</h3><p>진료안내 · 온라인 예약 + 오시는 길 · <b>클릭하면 열려요</b></p></div></a>
+    <a class="pcard rv" href="portfolio-scrivener.html" target="_blank"><div class="pthumb pt6">📂<span class="tagk">법무사</span><span class="viewk">샘플 보기 →</span></div><div class="pinfo"><h3>바로등기 법무사</h3><p>등기·개인회생·내용증명 · <b>클릭하면 열려요</b></p></div></a>
+  </div>
+  <div class="rv" style="text-align:center;margin-top:30px">
+    <a class="btn btn-primary" href="portfolio.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;text-decoration:none">📱 핸드폰으로 전체 보기 →</a>
+  </div>
+  <p class="port-note rv">※ 실제 제작 사례로 교체될 예시 시안입니다. 원하시는 사무소 유형의 샘플을 Zoom에서 보여드립니다.</p>
+</div></section>
+
+<!-- 가격 -->
+<section class="block price-sec" id="price"><div class="wrap">
+  <p class="eyebrow rv">가격 (제안)</p>
+  <h2 class="rv">제작은 한 번, 관리는 부담 없이.</h2>
+  <p class="sub rv">상담 한두 건이면 회수되는 투자. 사무소 규모에 맞게 시작하세요.</p>
+  <div class="plans">
+    <div class="plan rv">
+      <h3>기본형</h3><p class="desc">1페이지 + 약력 + 상담폼</p>
+      <div class="price"><span class="bp">60</span><small>만원~</small></div>
+      <div class="mfee">+ 월 관리비 (상담 시 안내)</div>
+      <div class="lockhint"><span class="lk">🔒</span>정확한 견적은 무료 상담에서 안내</div>
+      <ul><li><span class="ck">✓</span>약력·업무분야·상담 폼</li><li><span class="ck">✓</span>모바일 최적화</li><li><span class="ck">✓</span>영업일 5일 내 오픈</li></ul>
+      <button class="btn btn-ghost" onclick="goContact()">시작하기</button>
+    </div>
+    <div class="plan best rv">
+      <div class="badge">가장 인기</div>
+      <h3>표준형</h3><p class="desc">다페이지 사무실 홈페이지</p>
+      <div class="price"><span class="bp">99</span><small>만원~</small></div>
+      <div class="mfee">+ 월 관리비 (상담 시 안내)</div>
+      <div class="lockhint"><span class="lk">🔒</span>정확한 견적은 무료 상담에서 안내</div>
+      <ul><li><span class="ck">✓</span>홈·약력·업무분야·후기·문의</li><li><span class="ck">✓</span>상담 예약·문의 자동화</li><li><span class="ck">✓</span>네이버·구글 검색 등록</li><li><span class="ck">✓</span>시안 2회 무료 수정</li></ul>
+      <button class="btn btn-primary" onclick="goContact()">무료 상담 신청</button>
+    </div>
+    <div class="plan rv">
+      <h3>프리미엄</h3><p class="desc">표준형 + AI 챗봇·콘텐츠</p>
+      <div class="price"><span class="bp">159</span><small>만원~</small></div>
+      <div class="mfee">+ 월 관리비 (상담 시 안내)</div>
+      <div class="lockhint"><span class="lk">🔒</span>정확한 견적은 무료 상담에서 안내</div>
+      <ul><li><span class="ck">✓</span>표준형 전체 포함</li><li><span class="ck">✓</span>AI 상담 챗봇 탑재</li><li><span class="ck">✓</span>후기·실적 페이지 강화</li><li><span class="ck">✓</span>효과 분석 리포트</li></ul>
+      <button class="btn btn-ghost" onclick="goContact()">상담 요청</button>
+    </div>
+  </div>
+  <div class="addon rv">
+    <span class="em">🤖</span>
+    <div><b>AI 상담 챗봇 단독 추가</b><p>이미 홈페이지가 있다면 챗봇만 붙일 수 있어요. <a href="chatbot.html" style="color:var(--blue);font-weight:700">챗봇 전용 페이지 →</a></p></div>
+    <span class="pr">+<span class="bp">50</span>만원~</span>
+  </div>
+</div></section>
+
+<!-- 이용 안내 / 정책 -->
+<section class="block" id="policy"><div class="wrap">
+  <p class="eyebrow rv">이용 안내</p>
+  <h2 class="rv">투명하게, 미리 알려드립니다.</h2>
+  <p class="sub rv">계약 전에 알아두면 좋은 기본 정책입니다.</p>
+  <div class="polgrid">
+    <div class="pol rv"><span class="ic">💳</span><div><b>결제</b><p>계약금 50% + 오픈 시 잔금 50%. 카드·계좌이체 가능.</p></div></div>
+    <div class="pol rv"><span class="ic">✏️</span><div><b>무료 수정</b><p>시안 단계 2회 + 오픈 후 14일 내 텍스트·이미지 무료 수정.</p></div></div>
+    <div class="pol rv"><span class="ic">🛠️</span><div><b>월 관리비 포함 항목</b><p>호스팅·보안·장애 대응·소규모 수정. 금액은 상담 시 안내, 대규모 개편은 별도.</p></div></div>
+    <div class="pol rv"><span class="ic">🔑</span><div><b>소유권</b><p>완성된 홈페이지와 콘텐츠의 소유권은 의뢰인에게 귀속됩니다.</p></div></div>
+    <div class="pol rv"><span class="ic">🌐</span><div><b>도메인</b><p>도메인 비용은 별도(연 2만원 내외). 연결 작업은 무료.</p></div></div>
+    <div class="pol rv"><span class="ic">↩️</span><div><b>환불</b><p>착수 전 100%, 시안 전 50% 환불. 시안 후는 진행률 차감.</p></div></div>
+    <div class="pol rv"><span class="ic">📄</span><div><b>자료 제공</b><p>약력·사진·자료는 의뢰인이 제공(없으면 템플릿+가이드 제공).</p></div></div>
+    <div class="pol rv"><span class="ic">⚠️</span><div><b>챗봇 면책</b><p>챗봇 답변은 일반 안내이며 법률·세무 자문을 대체하지 않습니다.</p></div></div>
+  </div>
+</div></section>
+
+<!-- 문의 설문 -->
+<section class="block contact-sec" id="contact"><div class="wrap">
+  <p class="eyebrow rv">무료 상담 신청</p>
+  <h2 class="rv">1분이면 충분합니다.</h2>
+  <p class="sub rv">아래만 남겨주시면, 영업일 1일 내 Zoom 미팅 일정을 잡아드립니다.</p>
+  <div class="form-card rv">
+    <form id="leadForm">
+      <div class="frow">
+        <div class="field"><label>성함 <span class="req">*</span></label><input type="text" name="name" placeholder="홍길동" required></div>
+        <div class="field"><label>연락처 <span class="req">*</span></label><input type="tel" name="phone" placeholder="010-0000-0000" required></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>직군 <span class="req">*</span></label>
+          <select name="job" required>
+            <option value="">선택해주세요</option>
+            <option>변호사·법무</option><option>변리사·특허</option><option>세무사·회계</option>
+            <option>노무사·법무사</option><option>감정평가사</option><option>의사·병의원</option>
+            <option>강사·교육·과외</option><option>심리상담</option><option>기타</option>
+          </select></div>
+        <div class="field"><label>사무소명</label><input type="text" name="office" placeholder="○○법률사무소"></div>
+      </div>
+      <div class="field" style="margin-bottom:16px">
+        <label>현재 홈페이지가 있으신가요?</label>
+        <select name="hassite">
+          <option>없음 (새로 제작)</option><option>있지만 새로 만들고 싶음</option><option>있고 챗봇만 추가하고 싶음</option>
+        </select>
+      </div>
+      <div class="field" style="margin-bottom:16px">
+        <label>필요한 것 (복수 선택)</label>
+        <div class="checks" id="needs">
+          <label class="chk"><input type="checkbox" value="홈페이지 제작">홈페이지 제작</label>
+          <label class="chk"><input type="checkbox" value="약력·경력 페이지">약력·경력 페이지</label>
+          <label class="chk"><input type="checkbox" value="상담 예약·문의">상담 예약·문의</label>
+          <label class="chk"><input type="checkbox" value="AI 챗봇">AI 챗봇</label>
+          <label class="chk"><input type="checkbox" value="후기·사례 페이지">후기·사례 페이지</label>
+          <label class="chk"><input type="checkbox" value="검색 노출(SEO)">검색 노출(SEO)</label>
+        </div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>희망 오픈 시기</label>
+          <select name="when"><option>가능한 빨리</option><option>2주 이내</option><option>1개월 이내</option><option>아직 미정</option></select></div>
+        <div class="field"><label>예산대</label>
+          <select name="budget"><option>아직 모르겠어요</option><option>60만원대</option><option>100만원대</option><option>150만원 이상</option></select></div>
+      </div>
+      <div class="field" style="margin-bottom:16px">
+        <label>진행 방식</label>
+        <div class="zoomopt">
+          <label class="chk on"><input type="radio" name="meet" value="zoom" checked>📹 Zoom 화상 미팅</label>
+          <label class="chk"><input type="radio" name="meet" value="phone">📞 전화 상담</label>
+          <label class="chk"><input type="radio" name="meet" value="message">💬 문자·메일로 먼저</label>
+        </div>
+      </div>
+      <div class="field" style="margin-bottom:18px"><label>추가로 하고 싶은 말</label><textarea name="memo" placeholder="원하는 분위기, 참고할 사이트, 궁금한 점 등을 자유롭게 적어주세요."></textarea></div>
+      <button type="submit" class="btn btn-primary">무료 상담 신청하기 →</button>
+      <p class="privacy">제출하신 정보는 상담 목적으로만 사용됩니다. (데모 화면 — 실제 전송되지 않습니다)</p>
+    </form>
+    <div class="form-msg" id="formMsg">
+      <div class="ok">✅</div>
+      <h3>신청이 접수되었어요!</h3>
+      <p>영업일 1일 내에 Zoom 미팅 일정을 연락드릴게요.</p>
+    </div>
+  </div>
+  <p class="contact-direct rv">또는 이메일로 바로 문의하세요 · <a href="mailto:chloe.heydayii@gmail.com">chloe.heydayii@gmail.com</a></p>
+</div></section>
+
+<!-- final -->
+<section style="padding:0 0 80px"><div class="wrap">
+  <div class="final rv">
+    <h2>의뢰인은 오늘도 검색하고 있습니다.</h2>
+    <p class="sub">믿음직한 홈페이지 하나가, 사무소의 첫인상을 바꿉니다. 지금 무료로 상담받아 보세요.</p>
+    <button class="btn btn-primary" onclick="goContact()">무료 상담 신청하기 →</button>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="logo"><span class="mark">P</span>프로<span class="b">홈페이지</span></div>
+  <p>변호사·세무사 등 전문직 사무실 홈페이지 제작 서비스</p>
+  <p style="margin-top:8px"><a href="mailto:chloe.heydayii@gmail.com" style="color:var(--blue);font-weight:600">chloe.heydayii@gmail.com</a></p>
+  <p style="margin-top:8px;font-size:13px">© 2026 프로 홈페이지 · 데모 시안</p>
+</div></footer>
+
+<!-- popup modal -->
+<div class="modal-ov" id="modal">
+  <div class="modal">
+    <button class="x" onclick="closeModal()">×</button>
+    <div class="modal-top">
+      <span class="tag">⏳ 이번 달 한정</span>
+      <h3>신규 오픈 사무소 <b>선착순 혜택</b></h3>
+      <p>제작비 할인 + 무료 시안 1회 · 정확한 견적까지 함께 안내드려요</p>
+    </div>
+    <div class="modal-bd" id="modalBd">
+      <div class="benefit"><span class="c">✓</span>이번 달 신청 한정, 제작비 할인</div>
+      <div class="benefit"><span class="c">✓</span>무료 디자인 시안 1회 제공</div>
+      <div class="benefit"><span class="c">✓</span>15분 무료 Zoom 상담 + 맞춤 견적</div>
+      <form class="modal-form" id="modalForm">
+        <input type="tel" placeholder="연락처 (010-0000-0000)" required>
+        <button type="submit" class="btn btn-primary">혜택 받기</button>
+      </form>
+      <p class="modal-priv">제출 정보는 상담 목적으로만 사용됩니다. (데모 — 실제 전송되지 않습니다)</p>
+    </div>
+    <div class="modal-ok" id="modalOk">
+      <div class="e">🎉</div>
+      <h3>접수 완료!</h3>
+      <p>영업일 1일 내에 연락드릴게요.</p>
+    </div>
+    <div class="modal-foot" id="modalFoot">
+      <a onclick="closeModal(true)">오늘 하루 보지 않기</a>
+      <a onclick="closeModal()">닫기</a>
+    </div>
+  </div>
+</div>
+
+<button class="float" onclick="goContact()">📅 무료 상담</button>
+
+<script>
+function goContact(){closeModal();document.getElementById('contact').scrollIntoView({behavior:'smooth'});}
+
+/* ---- popup modal ---- */
+function closeModal(skipToday){
+  document.getElementById('modal').classList.remove('show');
+  if(skipToday){try{localStorage.setItem('pp_hide',new Date().toDateString());}catch(e){}}
+}
+window.addEventListener('DOMContentLoaded',()=>{
+  let hidden=false;try{hidden=localStorage.getItem('pp_hide')===new Date().toDateString();}catch(e){}
+  if(!hidden)setTimeout(()=>document.getElementById('modal').classList.add('show'),2500);
+  document.getElementById('modalForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    document.getElementById('modalBd').style.display='none';
+    document.getElementById('modalFoot').style.display='none';
+    document.getElementById('modalOk').style.display='block';
+    setTimeout(()=>closeModal(),2400);
+  });
+  document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal();});
+});
+
+/* ---- demo chat ---- */
+const ANS={
+  "상속 상담 비용이 궁금해요":"상속 상담은 30분 기준 5만원이며, 사건 수임 시 상담료는 수임료에서 차감됩니다. 상담 예약을 도와드릴까요?",
+  "주말에도 상담 신청되나요?":"네, 24시간 언제든 신청 가능합니다. 접수해 두시면 다음 영업일 오전에 직접 연락드려요. 성함과 연락처를 남겨주시겠어요?",
+  "필요한 서류가 뭔가요?":"상속 사건은 보통 ① 가족관계증명서 ② 사망진단서 ③ 재산 내역 자료가 필요합니다. 체크리스트를 문자로 보내드릴까요?",
+  "default":"좋은 질문이에요! 담당 전문가에게 정확히 전달해 드릴게요. 연락처를 남겨주시면 검토 후 바로 회신드립니다."
+};
+const chat=document.getElementById('chat'),chips=document.getElementById('chips');
+function add(t,cls){const d=document.createElement('div');d.className='msg '+cls;d.textContent=t;chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
+function typing(){const d=document.createElement('div');d.className='typing';d.innerHTML='<i></i><i></i><i></i>';chat.appendChild(d);chat.scrollTop=chat.scrollHeight;return d;}
+chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;
+  const q=b.dataset.q;add(q,'me');b.style.display='none';const t=typing();
+  setTimeout(()=>{t.remove();add(ANS[q]||ANS.default,'bot');},900);});
+
+/* ---- calculator ---- */
+const inq=document.getElementById('inq'),fee=document.getElementById('fee'),miss=document.getElementById('miss');
+function won(n){return Math.round(n).toLocaleString('ko-KR');}
+function calc(){
+  const A=+inq.value,B=+fee.value,C=+miss.value;
+  document.getElementById('vInq').textContent=A;
+  document.getElementById('vFee').textContent=B;
+  document.getElementById('vMiss').textContent=C;
+  const recovered=Math.round(A*(C/100)*0.6);
+  const monthly=Math.round(recovered*0.15*B);
+  document.getElementById('mInq').textContent=recovered+'건';
+  document.getElementById('mMonthly').textContent=won(monthly);
+  document.getElementById('mYear').textContent=won(monthly*12)+'만원';
+  document.getElementById('mPay').textContent=monthly>0?Math.max(1,Math.ceil(99/monthly))+'개월':'—';
+}
+[inq,fee,miss].forEach(s=>s.addEventListener('input',calc));
+calc();
+
+/* ---- checkbox active state ---- */
+document.querySelectorAll('.chk input').forEach(i=>{
+  const lab=i.closest('.chk');
+  i.addEventListener('change',()=>{
+    if(i.type==='radio'){lab.parentElement.querySelectorAll('.chk').forEach(l=>l.classList.remove('on'));lab.classList.add('on');}
+    else lab.classList.toggle('on',i.checked);
+  });
+});
+
+/* ---- form submit (demo, no network) ---- */
+document.getElementById('leadForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('leadForm').style.display='none';
+  const m=document.getElementById('formMsg');m.style.display='block';
+  m.scrollIntoView({behavior:'smooth',block:'center'});
+});
+
+/* ---- scroll reveal (staggered) ---- */
+const io=new IntersectionObserver(es=>es.forEach(en=>{
+  if(en.isIntersecting){
+    const sibs=[...en.target.parentElement.querySelectorAll(':scope > .rv')];
+    const i=Math.max(0,sibs.indexOf(en.target));
+    en.target.style.transitionDelay=(i*0.08)+'s';
+    en.target.classList.add('in');io.unobserve(en.target);
+  }
+}),{threshold:.1});
+document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+
+/* ---- scrollspy: highlight active menu item ---- */
+const navLinks=[...document.querySelectorAll('.menu a')];
+const spy=new IntersectionObserver(es=>es.forEach(en=>{
+  if(en.isIntersecting){navLinks.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+en.target.id));}
+}),{rootMargin:'-45% 0px -50% 0px'});
+['include','bot','calc','how','port','price','policy','contact'].forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el);});
+
+/* ---- ticker duplicate for seamless loop ---- */
+const tk=document.getElementById('tkTrack');if(tk)tk.innerHTML=tk.innerHTML+tk.innerHTML;
+
+/* ---- preview parallax tilt + blob follow ---- */
+const pv=document.getElementById('preview'),heroEl=document.querySelector('.hero');
+if(pv&&heroEl){
+  heroEl.style.perspective='900px';
+  heroEl.addEventListener('mousemove',e=>{
+    const r=heroEl.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    pv.style.transform=`rotateY(${x*7}deg) rotateX(${-y*7}deg)`;
+    document.querySelectorAll('.blob').forEach((b,i)=>{b.style.transform=`translate(${x*(20+i*10)}px,${y*(20+i*10)}px)`;});
+  });
+  heroEl.addEventListener('mouseleave',()=>{pv.style.transform='';});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>법률톡 | 형사·민사·가사 변호사 상담 (포트폴리오 샘플)</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2f6bfd; --blue-d:#1f4fd0; --blue-dd:#193fa8; --navy:#16245e;
+  --ink:#1b2232; --gray:#5f6a82; --line:#e3ebfb;
+  --bg:#eef3ff; --card:#fff; --soft:#e7eeff; --soft2:#dfeaff;
+  --shadow:0 18px 50px rgba(47,107,253,.16); --shadow-sm:0 8px 22px rgba(47,107,253,.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;padding-bottom:74px}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:520px;margin:0 auto;padding:0 20px}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:800;border-radius:14px;transition:.18s;font-size:17px;display:inline-block}
+
+/* sample bar */
+.samplebar{background:#16245e;color:#fff;text-align:center;font-size:12.5px;font-weight:700;padding:7px 12px}
+.samplebar a{text-decoration:underline;color:#bcd0ff}
+
+/* header */
+.head{background:#fff;position:relative;border-bottom:1px solid var(--line)}
+.head .wrap{display:flex;align-items:center;height:64px;gap:10px}
+.logo{font-weight:800;font-size:21px;color:var(--ink);display:flex;align-items:center;gap:9px}
+.logo .bub{position:relative;background:var(--blue);color:#fff;font-weight:800;font-size:16px;padding:6px 11px;border-radius:11px}
+.logo .bub::after{content:"";position:absolute;left:11px;bottom:-5px;width:11px;height:11px;background:var(--blue);clip-path:polygon(0 0,100% 0,0 100%)}
+.head .ribbon{position:absolute;top:0;right:20px;background:var(--navy);color:#fff;text-align:center;padding:13px 16px 16px;font-weight:800;font-size:18px;line-height:1.15;clip-path:polygon(0 0,100% 0,100% 100%,50% 86%,0 100%)}
+.head .ribbon small{display:block;font-size:11px;color:#a9bdf5;font-weight:700}
+
+/* hero */
+.hero{background:linear-gradient(180deg,#eaf1ff,#dfeaff);padding:42px 0 30px;text-align:center;position:relative;overflow:hidden}
+.hero h1{font-size:52px;font-weight:800;letter-spacing:-2px;color:var(--blue);line-height:1.1}
+.hero .stage{position:relative;height:280px;margin:18px 0 6px}
+.icon3d{position:absolute;left:50%;top:54%;transform:translate(-50%,-50%);width:170px;height:170px;border-radius:38px;background:linear-gradient(150deg,#3d77ff,#2f6bfd);display:grid;place-items:center;font-size:88px;box-shadow:0 26px 50px rgba(31,79,208,.45),inset 0 3px 8px rgba(255,255,255,.4);animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translate(-50%,-50%)}50%{transform:translate(-50%,-62%)}}
+.float-i{position:absolute;width:64px;height:64px;border-radius:50%;background:linear-gradient(150deg,#fff,#e7eeff);display:grid;place-items:center;font-size:32px;box-shadow:0 12px 24px rgba(31,79,208,.22)}
+.fi1{left:8%;top:60%;animation:bob 5s ease-in-out infinite}
+.fi2{right:9%;top:30%;animation:bob 4.5s ease-in-out .4s infinite}
+.fi3{right:13%;bottom:8%;animation:bob 5.5s ease-in-out .2s infinite}
+.hero .subline{font-size:20px;font-weight:800;color:var(--navy);line-height:1.45;margin-bottom:6px}
+.hero .subline b{color:var(--blue)}
+.hero .desc{color:var(--gray);font-size:15px;margin-bottom:20px}
+.hero .btn{background:linear-gradient(180deg,#4f86ff,#2f6bfd);color:#fff;padding:17px 40px;box-shadow:var(--shadow);width:100%;max-width:340px}
+.hero .btn:hover{transform:translateY(-2px)}
+
+/* trust band */
+.trust{background:var(--blue);color:#fff;padding:54px 0;text-align:center}
+.trust .small{color:#bfd3ff;font-size:19px;font-weight:800}
+.trust h2{font-size:34px;font-weight:800;letter-spacing:-1px;margin-top:6px}
+.trust .ac{background:#fff;color:var(--ink);border-radius:20px;margin-top:28px;padding:26px;display:flex;gap:18px;align-items:center;text-align:left;box-shadow:0 16px 40px rgba(0,0,0,.18);position:relative}
+.trust .ac .av{width:74px;height:74px;border-radius:50%;background:linear-gradient(135deg,#4f86ff,#1f4fd0);display:grid;place-items:center;font-size:38px;flex:0 0 74px}
+.trust .ac h3{font-size:20px}.trust .ac .role{color:var(--blue);font-weight:700;font-size:14px}
+.trust .ac p{font-size:13.5px;color:var(--gray);margin-top:4px}
+.trust .ac .rb{position:absolute;top:-12px;right:18px;background:var(--navy);color:#fff;font-size:12px;font-weight:800;padding:6px 12px;border-radius:8px}
+.trust .ac .rb b{font-size:15px}
+
+/* section */
+section{padding:50px 0}
+.sec-t{text-align:center;margin-bottom:30px}
+.sec-t .k{color:var(--blue);font-weight:800;font-size:18px}
+.sec-t h2{font-size:30px;font-weight:800;letter-spacing:-1px;line-height:1.25;margin-top:4px}
+.sec-t h2 b{color:var(--blue)}
+
+/* areas */
+.areas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.acard{background:var(--card);border-radius:18px;padding:24px 18px;text-align:center;box-shadow:var(--shadow-sm);transition:.22s}
+.acard:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.acard .ci{width:70px;height:70px;border-radius:20px;margin:0 auto 13px;background:linear-gradient(150deg,#eaf1ff,#d7e4ff);display:grid;place-items:center;font-size:38px;box-shadow:inset 0 2px 6px rgba(255,255,255,.7)}
+.acard h3{font-size:17px;margin-bottom:5px}
+.acard p{color:var(--gray);font-size:13px}
+
+/* info table */
+.tbl-sec{background:#fff}
+.tbl{border-radius:16px;overflow:hidden;box-shadow:var(--shadow-sm);border:1px solid var(--line)}
+.tbl .hd{background:#1c2333;color:#fff;display:grid;grid-template-columns:1.2fr 1fr;font-weight:800;font-size:15px}
+.tbl .hd div{padding:15px 18px}
+.tbl .hd div:last-child{text-align:center}
+.tbl .rw{display:grid;grid-template-columns:1.2fr 1fr;border-top:1px solid var(--line)}
+.tbl .rw:nth-child(even){background:#f6f9ff}
+.tbl .rw .l{padding:15px 18px;font-weight:700}
+.tbl .rw .r{padding:15px 18px;text-align:center;color:var(--blue);font-weight:800}
+.tbl .rw.on{background:var(--blue)!important}
+.tbl .rw.on .l,.tbl .rw.on .r{color:#fff}
+.tbl-note{font-size:12.5px;color:var(--gray);margin-top:12px;text-align:center}
+
+/* reviews */
+.rev{display:flex;flex-direction:column;gap:13px}
+.rcard{background:#fff;border-radius:16px;padding:20px;box-shadow:var(--shadow-sm)}
+.rcard .st{color:#ffb43b;letter-spacing:2px}
+.rcard p{font-size:14px;margin:8px 0 10px;color:var(--ink)}
+.rcard .w{font-size:12.5px;color:var(--gray);font-weight:700}
+
+/* form */
+.form-sec{background:var(--blue);color:#fff}
+.form-sec .sec-t h2{color:#fff}.form-sec .sec-t .k{color:#bfd3ff}
+.fc{background:#fff;border-radius:20px;padding:26px;box-shadow:0 16px 40px rgba(0,0,0,.18)}
+.fc .fld{margin-bottom:13px}
+.fc label{display:block;font-weight:700;font-size:13.5px;color:var(--ink);margin-bottom:6px}
+.fc input,.fc select{width:100%;border:1px solid var(--line);border-radius:11px;padding:13px;font-family:inherit;font-size:15px;background:#fbfcff;color:var(--ink)}
+.fc input:focus,.fc select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 4px rgba(47,107,253,.12)}
+.fc .btn{background:linear-gradient(180deg,#4f86ff,#2f6bfd);color:#fff;width:100%;padding:16px;margin-top:6px}
+.fc .agree{font-size:11.5px;color:var(--gray);text-align:center;margin-top:11px;line-height:1.5}
+.fok{display:none;text-align:center;padding:24px;color:var(--ink)}
+.fok .e{font-size:42px}.fok h3{font-size:20px;margin:8px 0 4px}.fok p{color:var(--gray);font-size:14px}
+
+/* final */
+.final{text-align:center;padding:54px 0}
+.final h2{font-size:26px;font-weight:800;letter-spacing:-.6px;line-height:1.4}
+.final h2 b{color:var(--blue)}
+.final .btn{background:linear-gradient(180deg,#4f86ff,#2f6bfd);color:#fff;padding:17px 0;width:100%;max-width:360px;margin-top:20px;box-shadow:var(--shadow)}
+
+/* footer */
+footer{background:#11193a;color:#9fabcf;padding:34px 0 30px;font-size:13px;text-align:center}
+footer b{color:#fff}
+footer .copy{margin-top:14px;font-size:11.5px;color:#6f7da6}
+
+/* sticky call bar */
+.callbar{position:fixed;bottom:0;left:0;right:0;background:var(--blue-d);display:grid;grid-template-columns:1fr 1fr;z-index:80;box-shadow:0 -6px 20px rgba(0,0,0,.18)}
+.callbar a{display:flex;align-items:center;justify-content:center;gap:11px;padding:13px;color:#fff}
+.callbar a:first-child{border-right:1px solid rgba(255,255,255,.22)}
+.callbar .ic{font-size:23px}
+.callbar .tx b{display:block;font-size:18px;font-weight:800;line-height:1.1}
+.callbar .tx small{font-size:11.5px;color:#c9d8ff;font-weight:600}
+
+.rv{opacity:0;transform:translateY(26px);transition:.7s cubic-bezier(.16,.84,.34,1)}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="samplebar">📌 프로 홈페이지 포트폴리오 샘플 (가상의 법률사무소) · <a href="index.html">프로 홈페이지로 돌아가기</a></div>
+
+<!-- header -->
+<div class="head"><div class="wrap">
+  <div class="logo"><span class="bub">법률톡</span>변호사상담센터</div>
+  <div class="ribbon">15년<small>변호사 경력</small></div>
+</div></div>
+
+<!-- hero -->
+<section class="hero"><div class="wrap">
+  <h1>법 걱정 끝!</h1>
+  <div class="stage">
+    <div class="float-i fi1">📜</div>
+    <div class="float-i fi2">🔨</div>
+    <div class="float-i fi3">🛡️</div>
+    <div class="icon3d">⚖️</div>
+  </div>
+  <p class="subline">전국 어디서나 믿고 맡기는<br><b>15년 경력 변호사</b></p>
+  <p class="desc">형사·민사·이혼·상속까지 끝까지 함께합니다</p>
+  <a class="btn" href="#form">바로 무료 상담하기</a>
+</div></section>
+
+<!-- trust -->
+<section class="trust"><div class="wrap">
+  <div class="small rv">수많은 의뢰인이 선택한</div>
+  <h2 class="rv">믿을 수 있는 변호사</h2>
+  <div class="ac rv">
+    <div class="av">⚖️</div>
+    <div>
+      <h3>이서준 변호사</h3>
+      <div class="role">대표변호사</div>
+      <p>형사·가사 사건 다수 수행 · 의뢰인 직접 상담</p>
+    </div>
+    <div class="rb">경력 <b>15년</b></div>
+  </div>
+</div></section>
+
+<!-- profile -->
+<style>
+.profile-sec{padding:54px 0;background:#fff}
+.profile-wrap{text-align:center}
+.pphoto{position:relative;width:200px;aspect-ratio:3/4;margin:0 auto 22px;border-radius:22px;overflow:hidden;background:linear-gradient(160deg,#4f86ff,#1f4fd0);box-shadow:0 18px 44px rgba(31,79,208,.3)}
+.pphoto svg{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:92%}
+.pphoto .cap{position:absolute;top:12px;left:12px;background:rgba(255,255,255,.92);color:#1b2232;font-size:11.5px;font-weight:800;padding:5px 11px;border-radius:999px}
+.pinfo .role{color:var(--blue);font-weight:800;font-size:13px;letter-spacing:.5px}
+.pinfo h2{font-size:27px;font-weight:800;letter-spacing:-.8px;margin:5px 0}
+.pinfo .hello{font-size:16px;color:#4b5563;line-height:1.85;margin:14px auto 18px;max-width:420px}
+.pcareer{list-style:none;display:inline-flex;flex-direction:column;gap:8px;text-align:left}
+.pcareer li{display:flex;gap:9px;font-size:14.5px;color:var(--ink)}
+.pcareer li::before{content:"✓";color:var(--blue);font-weight:800}
+</style>
+<section class="profile-sec" id="profile"><div class="wrap"><div class="profile-wrap">
+  <div class="pphoto rv"><span class="cap">📷 대표 사진</span>
+    <svg viewBox="0 0 240 300" preserveAspectRatio="xMidYMax meet"><circle cx="120" cy="112" r="56" fill="#fff" opacity=".92"/><path d="M30 300 C30 212 72 180 120 180 C168 180 210 212 210 300 Z" fill="#fff" opacity=".92"/></svg>
+  </div>
+  <div class="pinfo rv">
+    <div class="role">대표변호사 인사말</div>
+    <h2>이서준 변호사</h2>
+    <p class="hello">“사건을 마주한 의뢰인의 불안을 가장 먼저 헤아립니다. 15년간 형사·가사 사건을 다루며 배운 건, 끝까지 이야기를 듣는 것이 가장 좋은 변론이라는 사실이었습니다. 당신의 사건, 끝까지 함께하겠습니다.”</p>
+    <ul class="pcareer">
+      <li>○○대학교 법학전문대학원 졸업</li>
+      <li>대한변호사협회 등록 변호사</li>
+      <li>형사·가사 사건 다수 수행 · 누적 상담 1,200+</li>
+      <li>지역 법률복지 상담위원 (샘플)</li>
+    </ul>
+  </div>
+</div></div></section>
+
+<!-- areas -->
+<section><div class="wrap">
+  <div class="sec-t"><div class="k rv">PRACTICE</div><h2 class="rv">어떤 사건이든<br><b>먼저 들어드립니다</b></h2></div>
+  <div class="areas">
+    <div class="acard rv"><div class="ci">⚖️</div><h3>형사사건</h3><p>수사 초기 대응부터 재판까지</p></div>
+    <div class="acard rv"><div class="ci">📑</div><h3>민사·손배</h3><p>계약분쟁·채권추심·손해배상</p></div>
+    <div class="acard rv"><div class="ci">💍</div><h3>이혼·가사</h3><p>재산분할·양육권·위자료</p></div>
+    <div class="acard rv"><div class="ci">🏛️</div><h3>상속·유류분</h3><p>분할·유류분·유언 검토</p></div>
+    <div class="acard rv"><div class="ci">🏢</div><h3>부동산</h3><p>매매·임대차·명도 분쟁</p></div>
+    <div class="acard rv"><div class="ci">🏬</div><h3>기업법무</h3><p>계약 검토·자문·분쟁 예방</p></div>
+  </div>
+</div></section>
+
+<!-- info table -->
+<section class="tbl-sec"><div class="wrap">
+  <div class="sec-t"><div class="k rv">상담 안내</div><h2 class="rv">투명한<br><b>상담 안내</b></h2></div>
+  <div class="tbl rv">
+    <div class="hd"><div>사건 유형</div><div>1차 상담</div></div>
+    <div class="rw"><div class="l">형사사건</div><div class="r">무료</div></div>
+    <div class="rw on"><div class="l">이혼·가사</div><div class="r">무료</div></div>
+    <div class="rw"><div class="l">상속</div><div class="r">무료</div></div>
+    <div class="rw"><div class="l">민사·손해배상</div><div class="r">무료</div></div>
+    <div class="rw"><div class="l">부동산</div><div class="r">무료</div></div>
+  </div>
+  <p class="tbl-note">※ 1차 상담은 무료입니다. 착수금·수임료는 사건 난이도에 따라 상담 후 안내드립니다. (샘플)</p>
+</div></section>
+
+<!-- reviews -->
+<section><div class="wrap">
+  <div class="sec-t"><div class="k rv">REVIEW</div><h2 class="rv">의뢰인의<br><b>생생한 이야기</b></h2></div>
+  <div class="rev">
+    <div class="rcard rv"><div class="st">★★★★★</div><p>처음 겪는 일이라 막막했는데 끝까지 차분하게 설명해 주셔서 안심하고 맡겼어요.</p><div class="w">형사사건 · 익명</div></div>
+    <div class="rcard rv"><div class="st">★★★★★</div><p>연락이 빠르고 제 입장에서 가능한 방법을 솔직하게 알려주셔서 신뢰가 갔습니다.</p><div class="w">이혼·가사 · 익명</div></div>
+    <div class="rcard rv"><div class="st">★★★★★</div><p>복잡한 상속 문제를 차근차근 정리해 주셔서 다툼 없이 마무리했어요.</p><div class="w">상속 · 익명</div></div>
+  </div>
+  <p class="tbl-note">※ 포트폴리오 샘플용 예시 후기입니다.</p>
+</div></section>
+
+<!-- form -->
+<section class="form-sec" id="form"><div class="wrap">
+  <div class="sec-t"><div class="k rv">간편 상담</div><h2 class="rv">1분이면<br>접수 끝!</h2></div>
+  <div class="fc rv">
+    <form id="lForm">
+      <div class="fld"><label>성함</label><input type="text" placeholder="홍길동" required></div>
+      <div class="fld"><label>연락처</label><input type="tel" placeholder="010-0000-0000" required></div>
+      <div class="fld"><label>사건 유형</label><select><option>형사사건</option><option>이혼·가사</option><option>상속</option><option>민사·손해배상</option><option>부동산</option><option>기타</option></select></div>
+      <button type="submit" class="btn">무료 상담 신청하기</button>
+      <p class="agree">개인정보 처리방침에 동의하며, 입력 정보는 상담 안내 용도로만 사용됩니다.<br>(포트폴리오 샘플 — 실제 전송되지 않습니다)</p>
+    </form>
+    <div class="fok" id="lOk"><div class="e">✅</div><h3>접수되었습니다</h3><p>변호사가 직접 검토 후 빠르게 연락드리겠습니다.</p></div>
+  </div>
+</div></section>
+
+<!-- final -->
+<section class="final"><div class="wrap">
+  <h2>혼자 고민하지 마세요.<br><b>지금 바로 상담하세요.</b></h2>
+  <a class="btn" href="#form">바로 무료 상담하기</a>
+</div></section>
+
+<footer><div class="wrap">
+  <p><b>법률톡 변호사상담센터</b> (포트폴리오 샘플)</p>
+  <p style="margin-top:8px">서울시 서초구 (샘플 주소) · 대표변호사 이서준</p>
+  <p class="copy">© 2026 법률톡 · 프로 홈페이지 제작 예시 · 실제 사무소가 아닙니다.</p>
+</div></footer>
+
+<!-- sticky call bar -->
+<div class="callbar">
+  <a href="tel:0200000000"><span class="ic">📞</span><span class="tx"><b>전화 상담</b><small>전국 어디서나</small></span></a>
+  <a href="#form"><span class="ic">💬</span><span class="tx"><b>채팅 상담</b><small>1분 간편문의</small></span></a>
+</div>
+
+<script>
+document.getElementById('lForm').addEventListener('submit',e=>{e.preventDefault();
+  document.getElementById('lForm').style.display='none';document.getElementById('lOk').style.display='block';});
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.14});
+document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

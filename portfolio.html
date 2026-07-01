@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>포트폴리오 | 프로 홈페이지</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2E6BE6; --blue-d:#1B4FBF; --teal:#0E9594; --navy:#1B2540;
+  --ink:#1f2733; --gray:#5b6577; --line:#e7ecf5;
+  --bg:#f6f9ff; --card:#ffffff; --soft:#eef3fe;
+  --shadow:0 18px 50px rgba(31,77,191,.12);
+  --shadow-sm:0 8px 24px rgba(31,77,191,.08);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+
+/* ---- back arrow ---- */
+.back{position:fixed;top:20px;left:20px;z-index:50;width:48px;height:48px;border-radius:50%;background:#fff;border:1px solid var(--line);box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--navy);cursor:pointer;transition:.18s;text-decoration:none}
+.back:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateX(-3px)}
+.back span{line-height:1;margin-top:-2px}
+
+/* ---- header ---- */
+.head{text-align:center;padding:72px 20px 18px}
+.head .logo{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:18px;color:var(--navy);margin-bottom:20px}
+.head .logo .mark{width:26px;height:26px;border-radius:8px;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:14px}
+.head .logo .b{color:var(--blue)}
+.eyebrow{color:var(--blue);font-weight:800;letter-spacing:.04em;font-size:13.5px;margin-bottom:10px}
+.head h1{font-size:clamp(26px,4.4vw,40px);font-weight:800;letter-spacing:-.02em;color:var(--navy)}
+.head p{color:var(--gray);font-size:15px;margin-top:12px}
+.head .hint{margin-top:10px;font-size:13px;color:var(--blue-d);font-weight:700}
+
+/* ---- grid ---- */
+.grid{display:grid;grid-template-columns:repeat(2,max-content);gap:48px 64px;justify-content:center;padding:34px 20px 90px}
+
+/* ---- phone ---- */
+.item{display:flex;flex-direction:column;align-items:center;gap:18px}
+.phone{position:relative;width:300px;padding:11px;background:#0b0b0f;border-radius:46px;box-shadow:0 26px 60px rgba(16,24,52,.28),0 4px 12px rgba(0,0,0,.18);cursor:pointer;transition:transform .25s ease, box-shadow .25s ease}
+.phone:hover{transform:translateY(-8px);box-shadow:0 38px 80px rgba(16,24,52,.34)}
+.phone .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:120px;height:22px;background:#0b0b0f;border-radius:0 0 16px 16px;z-index:3}
+.screen{position:relative;width:278px;height:602px;border-radius:34px;overflow:hidden;background:#fff}
+.screen iframe{position:absolute;top:0;left:0;width:414px;height:900px;border:0;transform:scale(.6715);transform-origin:top left;pointer-events:none;background:#fff}
+.screen .cover{position:absolute;inset:0;z-index:4;display:block} /* swallows clicks → opens site */
+.screen .open{position:absolute;left:50%;bottom:18px;transform:translateX(-50%) translateY(8px);z-index:5;background:rgba(11,11,15,.82);color:#fff;font-size:14px;font-weight:800;padding:9px 18px;border-radius:999px;opacity:0;transition:.25s;white-space:nowrap;pointer-events:none}
+.phone:hover .open{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ---- label ---- */
+.label{text-align:center}
+.label .cat{display:inline-block;background:var(--soft);color:var(--blue-d);font-weight:800;font-size:12.5px;padding:5px 12px;border-radius:999px;margin-bottom:8px}
+.label .name{font-weight:800;font-size:17px;color:var(--navy)}
+.label .desc{color:var(--gray);font-size:13px;margin-top:3px}
+
+@media(max-width:720px){
+  .grid{grid-template-columns:1fr;gap:46px;justify-items:center}
+  .head{padding-top:84px}
+}
+</style>
+</head>
+<body>
+
+<a class="back" href="index.html" id="backBtn" aria-label="뒤로"><span>←</span></a>
+
+<header class="head">
+  <a class="logo" href="index.html"><span class="mark">P</span>프로<span class="b">홈페이지</span></a>
+  <p class="eyebrow">PORTFOLIO</p>
+  <h1>이런 사무실 홈페이지를 만듭니다.</h1>
+  <p>직군별 샘플을 핸드폰 화면 그대로 미리 보세요.</p>
+  <p class="hint">📱 폰을 누르면 전체 사이트가 새 창에서 열려요.</p>
+</header>
+
+<main class="grid" id="grid"></main>
+
+<script>
+// 뒤로가기: 히스토리가 있으면 직전 페이지로, 없으면 메인으로
+document.getElementById('backBtn').addEventListener('click', function(e){
+  if (history.length > 1 && document.referrer){ e.preventDefault(); history.back(); }
+});
+
+const SAMPLES = [
+  {cat:'변호사', name:'정도 법률사무소', desc:'형사·가사·상속 · 상담 신청', file:'portfolio-lawyer.html'},
+  {cat:'세무사', name:'한결 세무회계',   desc:'법인·양도세 · 모의계산',     file:'portfolio-tax.html'},
+  {cat:'변리사', name:'온특허 특허법률', desc:'상표·특허 · 무료 진단',       file:'portfolio-patent.html'},
+  {cat:'노무사', name:'내편 노무사',     desc:'부당해고·임금체불',          file:'portfolio-labor.html'},
+  {cat:'의원',   name:'온하루의원',      desc:'진료안내 · 온라인 예약',     file:'portfolio-clinic.html'},
+  {cat:'법무사', name:'바로등기 법무사', desc:'등기·개인회생·내용증명',     file:'portfolio-scrivener.html'},
+];
+
+const grid = document.getElementById('grid');
+grid.innerHTML = SAMPLES.map(s => `
+  <div class="item">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <iframe src="${s.file}" loading="lazy" title="${s.name} 미리보기" scrolling="no"></iframe>
+        <a class="cover" href="${s.file}" target="_blank" rel="noopener" aria-label="${s.name} 전체 사이트 열기"></a>
+        <span class="open">전체 사이트 열기 →</span>
+      </div>
+    </div>
+    <div class="label">
+      <span class="cat">${s.cat}</span>
+      <div class="name">${s.name}</div>
+      <div class="desc">${s.desc}</div>
+    </div>
+  </div>
+`).join('');
+</script>
+</body>
+</html>

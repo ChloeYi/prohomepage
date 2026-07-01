@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>한결 세무회계 | 강남 세무사 (포트폴리오 샘플)</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --green:#0f5e4e; --green-d:#0a463a; --gold:#c8a24a; --gold-d:#a9842f;
+  --ink:#1d2a26; --gray:#5a6a64; --line:#e4ece8;
+  --bg:#f5f9f7; --card:#fff; --soft:#eaf3ef; --soft2:#f6f0e2;
+  --shadow:0 18px 50px rgba(15,94,78,.13); --shadow-sm:0 8px 24px rgba(15,94,78,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* sample badge */
+.samplebar{background:var(--gold);color:#3a2c08;text-align:center;font-size:13px;font-weight:700;padding:7px 12px}
+.samplebar a{text-decoration:underline}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(245,249,247,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:66px;gap:26px}
+.logo{font-weight:800;font-size:21px;letter-spacing:-.5px;display:flex;align-items:center;gap:9px;color:var(--green)}
+.logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--gold));display:grid;place-items:center;color:#fff;font-size:17px;font-weight:800}
+.logo small{display:block;font-size:10px;color:var(--gray);font-weight:600;letter-spacing:1px}
+.menu{display:flex;gap:22px;font-size:15px;font-weight:600;color:var(--gray)}
+.menu a:hover{color:var(--green)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.tel{font-weight:800;color:var(--green);font-size:16px}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:11px;transition:.18s;font-size:15px;display:inline-block}
+.btn-g{background:var(--green);color:#fff;padding:12px 20px}
+.btn-g:hover{background:var(--green-d);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#3a2c08;padding:12px 20px}
+.btn-gold:hover{background:var(--gold-d);color:#fff}
+.btn-line{background:#fff;color:var(--green);border:1px solid var(--line);padding:12px 18px}
+.btn-line:hover{border-color:var(--green)}
+@media(max-width:900px){.menu,.tel{display:none}}
+
+/* hero */
+.hero{padding:60px 0 50px}
+.hero .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:46px;align-items:center}
+.eyebrow{color:var(--gold-d);font-weight:800;font-size:13px;letter-spacing:1.5px}
+.hero h1{font-size:42px;line-height:1.32;letter-spacing:-1px;font-weight:800;margin:14px 0 18px}
+.hero p.lead{color:var(--gray);font-size:17px;max-width:500px;margin-bottom:24px}
+.hero-cta{display:flex;gap:11px;flex-wrap:wrap}
+.owner{background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden}
+.owner .top{background:linear-gradient(140deg,var(--green),var(--green-d));padding:30px;color:#fff;display:flex;gap:18px;align-items:center}
+.owner .ava{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#e6c97a);flex:0 0 78px;display:grid;place-items:center;font-size:38px}
+.owner .top .r{font-size:13px;color:#bfe0d6}
+.owner .top h3{font-size:22px;letter-spacing:-.5px}
+.owner .stats{display:grid;grid-template-columns:repeat(3,1fr)}
+.owner .st{padding:20px 10px;text-align:center;border-right:1px solid var(--line)}
+.owner .st:last-child{border-right:none}
+.owner .st b{display:block;font-size:21px;color:var(--green);font-weight:800;letter-spacing:-.5px}
+.owner .st span{font-size:12.5px;color:var(--gray)}
+@media(max-width:900px){.hero .grid{grid-template-columns:1fr;gap:32px}.hero h1{font-size:31px}}
+
+/* sections */
+section.block{padding:70px 0}
+.center{text-align:center}
+h2{font-size:33px;line-height:1.3;letter-spacing:-.8px;font-weight:800;margin:8px 0 12px}
+.sub{color:var(--gray);font-size:16.5px;max-width:600px;margin:0 auto 44px}
+.center .sub{margin-left:auto;margin-right:auto}
+
+/* services */
+.svc-sec{background:linear-gradient(180deg,#fff,#eef5f1)}
+.svc{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+.scard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;box-shadow:var(--shadow-sm);transition:.25s}
+.scard:hover{transform:translateY(-7px);box-shadow:var(--shadow);border-color:#cfe5dd}
+.scard .no{font-size:13px;font-weight:800;color:var(--gold-d);letter-spacing:1px}
+.scard h3{font-size:20px;margin:6px 0 9px;letter-spacing:-.4px}
+.scard p{color:var(--gray);font-size:14.5px;margin-bottom:14px}
+.scard ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.scard li{font-size:14px;display:flex;gap:8px;color:var(--ink)}
+.scard li::before{content:"›";color:var(--green);font-weight:800}
+@media(max-width:760px){.svc{grid-template-columns:1fr}}
+
+/* process */
+.proc{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.pc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 26px;text-align:center}
+.pc .n{width:48px;height:48px;border-radius:50%;background:var(--soft);color:var(--green);font-weight:800;font-size:20px;display:grid;place-items:center;margin:0 auto 16px}
+.pc h3{font-size:18px;margin-bottom:8px}.pc p{color:var(--gray);font-size:14px}
+@media(max-width:760px){.proc{grid-template-columns:1fr}}
+
+/* calculator */
+.calc-sec{background:linear-gradient(180deg,#eef5f1,#fff)}
+.calc{max-width:760px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:1.1fr .9fr}
+.calc-in{padding:32px}
+.calc-in .fld{margin-bottom:18px}
+.calc-in label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}
+.calc-in input{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-family:inherit;font-size:15px;background:#fbfdfc}
+.calc-in input:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(15,94,78,.1)}
+.calc-in .unit{font-size:12px;color:var(--gray);margin-top:5px}
+.calc-out{background:linear-gradient(150deg,var(--green),var(--green-d));color:#fff;padding:32px;display:flex;flex-direction:column;justify-content:center}
+.calc-out .lbl{font-size:13px;color:#bfe0d6;font-weight:700}
+.calc-out .amt{font-size:38px;font-weight:800;letter-spacing:-1.5px;margin:4px 0 14px}
+.calc-out .amt small{font-size:18px}
+.calc-out .row{font-size:13.5px;color:#d8eae3;display:flex;justify-content:space-between;padding:6px 0;border-top:1px solid rgba(255,255,255,.15)}
+.calc-note{font-size:11.5px;color:#9fc4b9;margin-top:14px;line-height:1.5}
+@media(max-width:760px){.calc{grid-template-columns:1fr}}
+
+/* simulator */
+.simbox{max-width:720px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:32px}
+.ctoggle{display:flex;gap:8px;background:var(--soft);border-radius:14px;padding:6px;margin-bottom:26px}
+.ct{flex:1;border:none;background:transparent;font-family:inherit;font-weight:800;font-size:15px;padding:13px;border-radius:10px;cursor:pointer;color:var(--gray);transition:.15s}
+.ct.on{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(15,94,78,.25)}
+.sfield{margin-bottom:22px}
+.sfield label{display:flex;justify-content:space-between;align-items:center;font-weight:700;font-size:15px;margin-bottom:12px}
+.sfield label b{color:var(--green);font-size:17px}
+.sfield input[type=range]{width:100%;-webkit-appearance:none;height:7px;border-radius:5px;background:var(--soft);outline:none}
+.sfield input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 3px 8px rgba(15,94,78,.4)}
+.srange{display:flex;justify-content:space-between;font-size:12px;color:var(--gray);margin-top:7px}
+.btab{border:1px solid var(--line);border-radius:14px;overflow:hidden;margin:6px 0 22px}
+.btab .bhd{display:grid;grid-template-columns:1fr 1fr;background:var(--green);color:#fff;font-weight:800;font-size:14.5px}
+.btab .bhd div{padding:13px 18px}
+.btab .brow{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}
+.btab .brow div{padding:13px 18px;font-size:14.5px}
+.btab .brow div:first-child{font-weight:700;color:var(--ink)}
+.btab .brow div:last-child{text-align:right}
+.btab .brow.hl{background:var(--soft2)}
+.btab .brow.hl div{font-weight:800}
+.btab .brow.hl div:last-child{color:#c0392b}
+.scards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.scard{background:var(--soft);border-radius:14px;padding:20px;text-align:center}
+.scard .l{font-size:13px;color:var(--gray);font-weight:700}
+.scard .n{font-size:26px;font-weight:800;letter-spacing:-1px;margin-top:5px}
+.scard.red .n{color:#c0392b}
+.simnote{font-size:12px;color:var(--gray);margin-top:14px;text-align:center;line-height:1.5}
+.ttabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:24px}
+.tt{border:1px solid var(--line);background:#fff;color:var(--gray);font-family:inherit;font-weight:700;font-size:14px;padding:9px 16px;border-radius:999px;cursor:pointer;transition:.15s}
+.tt.on{background:var(--green);color:#fff;border-color:var(--green)}
+.tt:hover{color:var(--green-d)}
+.sin{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px 13px;font-family:inherit;font-size:15px;background:#fbfdfc;color:var(--ink)}
+.sin:focus{outline:none;border-color:var(--green)}
+.scard.green .n{color:#1aa463}
+.pill2{display:flex;gap:8px;background:var(--soft);border-radius:14px;padding:6px;margin-bottom:18px}
+.pill2 button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:800;font-size:14px;padding:12px;border-radius:10px;cursor:pointer;color:var(--gray)}
+.pill2 button.on{background:var(--green);color:#fff}
+.fld{margin-bottom:18px}
+.fld>label{display:block;font-weight:700;font-size:14.5px;margin-bottom:10px}
+.fld .rowlab{display:flex;justify-content:space-between;align-items:center}
+.fld .rowlab b{color:var(--green);font-size:16px}
+.rng{display:flex;justify-content:space-between;font-size:12px;color:var(--gray);margin-top:6px}
+.ropt{display:flex;flex-direction:column;gap:8px}
+.ropt .ro{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:14.5px;transition:.15s}
+.ropt .ro .dot{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);flex:0 0 18px}
+.ropt .ro.on{border-color:var(--green);background:var(--soft)}
+.ropt .ro.on .dot{border-color:var(--green);background:var(--green);box-shadow:inset 0 0 0 3px #fff}
+.hint{font-size:12px;color:var(--gray);margin-top:8px;line-height:1.5}
+.note{background:var(--soft2);border-radius:12px;padding:14px 16px;font-size:12.5px;color:#6a5a2e;margin-top:16px;line-height:1.6}
+.btn-kakao{background:#fae100;color:#3a1d1d;padding:12px 18px}
+.btn-kakao:hover{background:#f2d800;transform:translateY(-2px)}
+@media(max-width:560px){.scards{grid-template-columns:1fr}}
+
+/* cta */
+.cta{background:linear-gradient(135deg,var(--green),var(--green-d));border-radius:26px;padding:56px 38px;text-align:center;color:#fff}
+.cta h2{color:#fff}.cta .sub{color:#bfe0d6}
+.cta .btns{display:flex;gap:11px;justify-content:center;flex-wrap:wrap}
+
+/* footer */
+footer{background:#0b2a23;color:#a9c2ba;padding:48px 0 40px;font-size:14px}
+footer .grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+footer h4{color:#fff;font-size:15px;margin-bottom:13px}
+footer a{color:#a9c2ba}footer a:hover{color:#fff}
+footer ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+footer .copy{margin-top:32px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1);font-size:12.5px;color:#7e9a92}
+@media(max-width:760px){footer .grid{grid-template-columns:1fr;gap:24px}}
+
+.rv{opacity:0;transform:translateY(28px);transition:.7s cubic-bezier(.16,.84,.34,1)}
+.rv.in{opacity:1;transform:none}
+
+/* kakao float */
+.kfloat{position:fixed;right:20px;bottom:20px;background:#fae100;color:#3a1d1d;border:none;cursor:pointer;font-family:inherit;font-weight:800;padding:14px 20px;border-radius:999px;box-shadow:var(--shadow);z-index:60;font-size:15px}
+.kfloat:hover{transform:translateY(-2px)}
+.kfloat{animation:bobSm 3s ease-in-out infinite}
+
+/* ===== animations & sparkle (arbit 참고: 둥둥 뜨는 느낌) ===== */
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes bobSm{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}50%{opacity:1;transform:scale(1.15)}}
+@keyframes popIn{from{opacity:0;transform:scale(.85) translateY(10px)}to{opacity:1;transform:none}}
+@keyframes shine{0%,100%{left:-130%}55%{left:170%}}
+.btn-g,.btn-gold{position:relative;overflow:hidden}
+.btn-g::after,.btn-gold::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+/* owner card: float + sparkle + floating badge */
+.owner{position:relative;animation:bob 5s ease-in-out infinite}
+.owner .spk{position:absolute;font-size:17px;animation:twinkle 2.2s ease-in-out infinite;pointer-events:none;z-index:2}
+.owner .s1{top:12px;right:16px}.owner .s2{top:64px;left:12px;font-size:13px;animation-delay:.6s}.owner .s3{bottom:74px;right:24px;font-size:14px;animation-delay:1.1s}
+.owner .fbadge{position:absolute;left:-16px;bottom:30px;background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 14px 32px rgba(15,94,78,.22);font-weight:800;font-size:13px;color:var(--ink);display:flex;align-items:center;gap:9px;animation:bobSm 4s ease-in-out .4s infinite;z-index:2}
+.owner .fbadge b{color:var(--green);font-size:15px}
+.owner .fbadge .ic{width:28px;height:28px;border-radius:9px;background:var(--soft2);display:grid;place-items:center;font-size:15px}
+/* card hover variety */
+.svc .scard{transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s}
+.svc .scard:hover{transform:translateY(-9px) rotate(-.7deg)}
+.svc .scard:hover .no{color:var(--green)}
+.proc .pc{transition:transform .25s}
+.proc .pc:hover{transform:translateY(-8px)}
+.proc .pc .n{transition:.3s}
+.proc .pc:hover .n{transform:rotate(-10deg) scale(1.15);background:var(--green);color:#fff}
+.rcard{transition:transform .25s,box-shadow .25s}
+.rcard:hover{transform:scale(1.03);box-shadow:var(--shadow)}
+/* apply form */
+.apply-sec{background:linear-gradient(180deg,#eef5f1,#fff)}
+.aform{max-width:600px;margin:0 auto;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:34px}
+.arow{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.afield label{display:block;font-weight:700;font-size:13.5px;margin-bottom:6px}
+.afield input,.afield select,.afield textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:12px 13px;font-family:inherit;font-size:15px;background:#fbfdfc;color:var(--ink)}
+.afield input:focus,.afield select:focus,.afield textarea:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 4px rgba(15,94,78,.1)}
+.afield textarea{resize:vertical;min-height:88px}
+.aform .btn-g{width:100%;text-align:center;padding:15px;font-size:16px;margin-top:6px}
+.apriv{font-size:12px;color:var(--gray);text-align:center;margin-top:11px}
+.aok{display:none;text-align:center;padding:26px}
+.aok .e{font-size:44px;display:inline-block;animation:popIn .5s}
+.aok h3{font-size:22px;margin:10px 0 5px}.aok p{color:var(--gray)}
+@media(max-width:560px){.arow{grid-template-columns:1fr}}
+/* popup */
+.modal-ov{position:fixed;inset:0;background:rgba(15,30,25,.55);backdrop-filter:blur(3px);z-index:100;display:none;align-items:center;justify-content:center;padding:20px}
+.modal-ov.show{display:flex;animation:fadeIn .3s}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:#fff;border-radius:22px;max-width:400px;width:100%;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.35);animation:popIn .45s cubic-bezier(.2,.8,.2,1);position:relative}
+.modal .x{position:absolute;top:12px;right:14px;background:rgba(255,255,255,.25);border:none;color:#fff;width:30px;height:30px;border-radius:50%;font-size:18px;line-height:1;cursor:pointer;z-index:2}
+.modal-top{background:linear-gradient(135deg,var(--green),var(--green-d));color:#fff;padding:26px 26px 22px;text-align:center;position:relative;overflow:hidden}
+.modal-top .spk{position:absolute;font-size:15px;animation:twinkle 2s infinite}
+.modal-top .k1{top:14px;left:20px}.modal-top .k2{top:40px;right:26px;animation-delay:.7s}.modal-top .k3{bottom:16px;left:40px;animation-delay:1.2s}
+.modal-top .tag{display:inline-block;background:rgba(200,162,74,.3);color:#ffe6b0;font-weight:800;font-size:12.5px;padding:5px 14px;border-radius:999px;margin-bottom:10px}
+.modal-top h3{font-size:22px;letter-spacing:-.5px}
+.modal-top p{font-size:13px;color:#c9e6dd;margin-top:7px}
+.modal-bd{padding:22px 26px 22px}
+.modal-bd .bft{display:flex;gap:9px;align-items:center;font-size:14px;font-weight:600;margin-bottom:9px;color:var(--ink)}
+.modal-bd .bft .c{color:var(--green);font-weight:800}
+.modal-form{display:flex;gap:8px;margin-top:15px}
+.modal-form input{flex:1;border:1px solid var(--line);border-radius:11px;padding:12px;font-family:inherit;font-size:14.5px;background:#fbfdfc}
+.modal-form input:focus{outline:none;border-color:var(--green)}
+.modal-form .btn-g{padding:12px 16px;white-space:nowrap}
+.modal-priv{font-size:11px;color:var(--gray);text-align:center;margin-top:11px}
+.modal-foot{display:flex;justify-content:space-between;align-items:center;padding:0 26px 18px;font-size:13px}
+.modal-foot a{color:var(--gray);cursor:pointer}.modal-foot a:hover{color:var(--green)}
+.modal-ok{display:none;text-align:center;padding:24px}.modal-ok .e{font-size:40px}.modal-ok h3{font-size:20px;margin:8px 0 4px}.modal-ok p{color:var(--gray)}
+</style>
+</head>
+<body>
+
+<div class="samplebar">📌 이 페이지는 <b>프로 홈페이지 포트폴리오 샘플</b>입니다 (가상의 세무사무소) · <a href="index.html">프로 홈페이지로 돌아가기</a></div>
+
+<nav><div class="wrap">
+  <div class="logo"><span class="mark">한</span><div>한결 세무회계<small>HANGYEOL TAX</small></div></div>
+  <div class="menu">
+    <a href="#svc">업무분야</a>
+    <a href="#proc">진행 과정</a>
+    <a href="tax-calc.html">모의계산</a>
+    <a href="#contact">상담신청</a>
+  </div>
+  <div class="nav-cta">
+    <span class="tel">02-000-0000</span>
+    <a class="btn btn-gold" href="#contact">상담 신청</a>
+    <a class="btn btn-kakao" href="#contact">카카오톡 상담</a>
+  </div>
+</div></nav>
+
+<!-- hero -->
+<header class="hero"><div class="wrap"><div class="grid">
+  <div class="rv in">
+    <p class="eyebrow">HANGYEOL TAX &amp; ACCOUNTING</p>
+    <h1>복잡한 세금,<br>흐름부터 정리해 드립니다.</h1>
+    <p class="lead">법인·개인사업자 기장부터 종합소득세·부가세, 양도·상속·증여, 세무조사 대응까지. 사실관계와 법령에 근거해 명확한 결론을 드립니다.</p>
+    <div class="hero-cta">
+      <a class="btn btn-g" href="#contact">상담 신청하기</a>
+      <a class="btn btn-line" href="tax-calc.html">간편 모의계산</a>
+    </div>
+  </div>
+  <div class="owner rv in">
+    <span class="spk s1">✨</span><span class="spk s2">✨</span><span class="spk s3">✨</span>
+    <div class="fbadge"><span class="ic">💰</span><div style="line-height:1.2">연 절세<br><b>수백만원↓</b></div></div>
+    <div class="top">
+      <div class="ava">👤</div>
+      <div><div class="r">대표 세무사</div><h3>김민준 세무사</h3><div class="r">12년 경력 · 강남</div></div>
+    </div>
+    <div class="stats">
+      <div class="st"><b>2,000+</b><span>누적 상담</span></div>
+      <div class="st"><b>350곳+</b><span>기장 거래처</span></div>
+      <div class="st"><b>12년</b><span>실무 경력</span></div>
+    </div>
+  </div>
+</div></div></header>
+
+<!-- services -->
+<section class="block svc-sec" id="svc"><div class="wrap">
+  <div class="center"><p class="eyebrow rv">OUR SERVICES</p><h2 class="rv">사업자 세무대리부터 자산 이전까지</h2>
+  <p class="sub rv">일상적인 세무관리부터 양도·상속·증여 같은 자산 이슈까지, 상황에 맞는 해석과 대응을 제공합니다.</p></div>
+  <div class="svc">
+    <div class="scard rv"><div class="no">01</div><h3>법인·개인사업자 기장</h3><p>매출·매입과 비용 자료를 정리하고 신고기한에 맞춰 장부를 관리합니다.</p>
+      <ul><li>월별 매출·매입 정리</li><li>손익 현황 검토</li><li>원천세 신고</li></ul></div>
+    <div class="scard rv"><div class="no">02</div><h3>종합소득세·부가가치세</h3><p>소득·사업자 유형을 확인해 정확한 신고를 진행합니다.</p>
+      <ul><li>종합소득세 신고대행</li><li>부가가치세 신고대행</li><li>프리랜서 3.3% 신고</li></ul></div>
+    <div class="scard rv"><div class="no">03</div><h3>양도·상속·증여세</h3><p>부동산·주식 등 자산 이전의 세무 쟁점을 검토하고 신고합니다.</p>
+      <ul><li>양도소득세 상담·신고</li><li>상속세 상담·신고</li><li>증여세 절세 설계</li></ul></div>
+    <div class="scard rv"><div class="no">04</div><h3>세무조사 대응</h3><p>과세자료 해명과 소명 요청에 증빙을 정리해 대응 방향을 제시합니다.</p>
+      <ul><li>해명 안내문 검토</li><li>소명자료 정리·제출</li><li>조사 통지서 검토</li></ul></div>
+  </div>
+</div></section>
+
+<!-- process -->
+<section class="block" id="proc"><div class="wrap">
+  <div class="center"><p class="eyebrow rv">OUR PROCESS</p><h2 class="rv">3단계로 정리하는 세무 검토</h2>
+  <p class="sub rv">사실관계 → 법령 근거 → 리스크 정리 순서로, 근거 있는 결론을 서면으로 드립니다.</p></div>
+  <div class="proc">
+    <div class="pc rv"><div class="n">1</div><h3>사실관계 정리</h3><p>거래·계약·증빙을 시간 순으로 정리해 쟁점을 도출합니다.</p></div>
+    <div class="pc rv"><div class="n">2</div><h3>법령 근거 검토</h3><p>관련 세법·예규·판례를 근거로 적용 규정을 명확히 합니다.</p></div>
+    <div class="pc rv"><div class="n">3</div><h3>리스크 정리</h3><p>예상 세액과 위험도를 표로 제시해 의사결정을 돕습니다.</p></div>
+  </div>
+</div></section>
+
+<!-- calculator (간단) -->
+<section class="block calc-sec" id="calc"><div class="wrap">
+  <div class="center"><p class="eyebrow rv">간편 모의계산</p><h2 class="rv">예상 종합소득세, 30초면 확인</h2>
+  <p class="sub rv">연소득과 경비를 입력하면 예상 세액을 바로 계산해 드립니다.</p></div>
+  <div class="calc rv">
+    <div class="calc-in">
+      <div class="fld"><label>연간 총수입 (만원)</label><input type="number" id="income" value="6000" min="0"><div class="unit">사업·프리랜서 등 1년 총수입</div></div>
+      <div class="fld"><label>필요경비 + 공제 (만원)</label><input type="number" id="cost" value="1500" min="0"><div class="unit">인건비·임차료 등 경비와 소득공제 합계</div></div>
+      <p style="font-size:12.5px;color:var(--gray);margin-bottom:12px">* 단순 누진세율 기준의 참고용 계산입니다.</p>
+      <a class="btn btn-line" href="tax-calc.html">세목별 상세 계산기 →</a>
+    </div>
+    <div class="calc-out">
+      <div class="lbl">예상 종합소득세 (지방소득세 포함)</div>
+      <div class="amt"><span id="tax">0</span><small> 만원</small></div>
+      <div class="row"><span>과세표준</span><span id="base">0 만원</span></div>
+      <div class="row"><span>적용 최고세율</span><span id="rate">0%</span></div>
+      <p class="calc-note">2026년 기준 종합소득세 누진세율 + 지방소득세 10% 가정. 실제 세액은 공제·감면에 따라 달라지며, 정확한 검토는 상담을 권합니다.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- cta -->
+<section style="padding:0 0 70px"><div class="wrap">
+  <div class="cta rv">
+    <h2>세금 문제, 혼자 고민하지 마세요.</h2>
+    <p class="sub">1차 문의는 편하게. 사안을 먼저 듣고 세무사가 직접 검토해 안내드립니다.</p>
+    <div class="btns">
+      <a class="btn btn-gold" href="#contact">상담 신청서 작성</a>
+      <a class="btn btn-line" href="tel:0200000000">02-000-0000</a>
+    </div>
+  </div>
+</div></section>
+
+<!-- 상담 신청서 -->
+<section class="block apply-sec" id="contact"><div class="wrap">
+  <div class="center"><p class="eyebrow rv">CONSULTATION</p><h2 class="rv">상담 신청서 작성</h2>
+  <p class="sub rv">간단히 남겨주시면, 세무사가 직접 검토 후 연락드립니다.</p></div>
+  <div class="aform rv">
+    <form id="aForm">
+      <div class="arow">
+        <div class="afield"><label>성함</label><input type="text" placeholder="홍길동" required></div>
+        <div class="afield"><label>연락처</label><input type="tel" placeholder="010-0000-0000" required></div>
+      </div>
+      <div class="arow">
+        <div class="afield"><label>사업자 유형</label><select><option>개인사업자</option><option>법인사업자</option><option>프리랜서 (3.3%)</option><option>창업 예정·기타</option></select></div>
+        <div class="afield"><label>상담 분야</label><select><option>기장·세무대리</option><option>종합소득세·부가세</option><option>양도·상속·증여</option><option>세무조사 대응</option><option>기타</option></select></div>
+      </div>
+      <div class="afield" style="margin-bottom:14px"><label>상담 희망 방식</label><select><option>전화 상담</option><option>카카오톡 상담</option><option>방문 상담</option></select></div>
+      <div class="afield" style="margin-bottom:16px"><label>문의 내용</label><textarea placeholder="상황을 간단히 적어주세요. 예: 개인사업자 종합소득세 신고 문의드립니다."></textarea></div>
+      <button type="submit" class="btn btn-g">상담 신청하기 →</button>
+      <p class="apriv">입력 정보는 상담 목적으로만 사용됩니다. (포트폴리오 샘플 — 실제 전송되지 않습니다)</p>
+    </form>
+    <div class="aok" id="aOk"><div class="e">✅</div><h3>신청이 접수됐어요!</h3><p>세무사가 검토 후 빠르게 연락드리겠습니다.</p></div>
+  </div>
+</div></section>
+
+<!-- footer -->
+<footer id="office"><div class="wrap">
+  <div class="grid">
+    <div>
+      <div class="logo" style="color:#fff"><span class="mark">한</span><div style="color:#fff">한결 세무회계<small style="color:#8fb0a7">HANGYEOL TAX</small></div></div>
+      <p style="margin-top:14px;max-width:300px">복잡한 세금의 흐름을 정리합니다. 장부와 신고, 세무 리스크를 사실관계와 법령에 근거해 검토합니다.</p>
+    </div>
+    <div><h4>바로가기</h4><ul>
+      <li><a href="#svc">업무분야</a></li><li><a href="#proc">진행 과정</a></li>
+      <li><a href="tax-calc.html">간편 모의계산</a></li><li><a href="#contact">상담 신청</a></li>
+    </ul></div>
+    <div><h4>사무실 안내</h4><ul>
+      <li>서울시 강남구 (샘플 주소)</li><li><a href="tel:0200000000">02-000-0000</a></li>
+      <li>평일 09:00 – 18:00</li><li>대표 세무사 김민준</li>
+    </ul></div>
+  </div>
+  <p class="copy">© 2026 한결 세무회계 (포트폴리오 샘플). 프로 홈페이지 제작 예시 · 실제 사무소가 아닙니다.</p>
+</div></footer>
+
+<!-- popup -->
+<div class="modal-ov" id="modal">
+  <div class="modal">
+    <button class="x" onclick="closeModal()">×</button>
+    <div class="modal-top">
+      <span class="spk k1">✨</span><span class="spk k2">✨</span><span class="spk k3">✨</span>
+      <span class="tag">⏳ 이번 달 한정</span>
+      <h3>무료 세무 상담 이벤트</h3>
+      <p>지금 신청하면 1차 상담 무료 + 절세 포인트 진단</p>
+    </div>
+    <div class="modal-bd" id="modalBd">
+      <div class="bft"><span class="c">✓</span>1차 세무 상담 무료</div>
+      <div class="bft"><span class="c">✓</span>내 사업 맞춤 절세 포인트 안내</div>
+      <div class="bft"><span class="c">✓</span>기장료·수수료 견적까지 한 번에</div>
+      <form class="modal-form" id="modalForm">
+        <input type="tel" placeholder="연락처 (010-0000-0000)" required>
+        <button type="submit" class="btn btn-g">신청</button>
+      </form>
+      <p class="modal-priv">제출 정보는 상담 목적으로만 사용됩니다. (샘플 — 실제 전송되지 않습니다)</p>
+    </div>
+    <div class="modal-ok" id="modalOk"><div class="e">🎉</div><h3>접수 완료!</h3><p>세무사가 곧 연락드릴게요.</p></div>
+    <div class="modal-foot" id="modalFoot">
+      <a onclick="closeModal(true)">오늘 하루 보지 않기</a>
+      <a onclick="closeModal()">닫기</a>
+    </div>
+  </div>
+</div>
+
+<a class="kfloat" href="#contact">💬 카카오톡 상담</a>
+
+<script>
+/* 상담 신청 폼 */
+document.getElementById('aForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('aForm').style.display='none';var ok=document.getElementById('aOk');ok.style.display='block';ok.scrollIntoView({behavior:'smooth',block:'center'});});
+
+/* 팝업 */
+function closeModal(skip){document.getElementById('modal').classList.remove('show');if(skip){try{localStorage.setItem('htx_hide',new Date().toDateString());}catch(e){}}}
+window.addEventListener('load',function(){
+  var hide=false;try{hide=localStorage.getItem('htx_hide')===new Date().toDateString();}catch(e){}
+  if(!hide)setTimeout(function(){document.getElementById('modal').classList.add('show');},2500);
+  document.getElementById('modalForm').addEventListener('submit',function(e){e.preventDefault();document.getElementById('modalBd').style.display='none';document.getElementById('modalFoot').style.display='none';document.getElementById('modalOk').style.display='block';setTimeout(function(){closeModal();},2200);});
+  document.getElementById('modal').addEventListener('click',function(e){if(e.target.id==='modal')closeModal();});
+});
+
+/* 간단 종합소득세 모의계산 (만원 단위) */
+var inc=document.getElementById('income'),cst=document.getElementById('cost');
+function fmtMan(n){return Math.max(0,Math.round(n)).toLocaleString('ko-KR');}
+function calcSimple(){
+  var base=Math.max(0,(+inc.value||0)-(+cst.value||0));
+  var b=base*10000, tax=0, rate=0;
+  var T=[[14000000,.06,0],[50000000,.15,1260000],[88000000,.24,5760000],[150000000,.35,15440000],[300000000,.38,19940000],[500000000,.40,25940000],[1000000000,.42,35940000],[Infinity,.45,65940000]];
+  for(var i=0;i<T.length;i++){if(b<=T[i][0]){tax=b*T[i][1]-T[i][2];rate=T[i][1];break;}}
+  tax=Math.max(0,tax)*1.1;
+  document.getElementById('base').textContent=fmtMan(base)+' 만원';
+  document.getElementById('rate').textContent=Math.round(rate*100)+'%';
+  document.getElementById('tax').textContent=fmtMan(tax/10000);
+}
+[inc,cst].forEach(function(e){e.addEventListener('input',calcSimple);});calcSimple();
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}}),{threshold:.12});
+document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

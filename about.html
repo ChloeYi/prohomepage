@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>소개 | 프로 홈페이지 — 전문직 사무실 홈페이지 제작</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" rel="stylesheet" />
+<style>
+:root{
+  --blue:#2E6BE6; --blue-d:#1B4FBF; --teal:#0E9594; --navy:#1B2540;
+  --ink:#1f2733; --gray:#5b6577; --line:#e7ecf5;
+  --bg:#f6f9ff; --card:#ffffff; --soft:#eef3fe; --soft2:#e7f5f4;
+  --shadow:0 18px 50px rgba(31,77,191,.12);
+  --shadow-sm:0 8px 24px rgba(31,77,191,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Pretendard,system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+.blob{position:fixed;border-radius:50%;filter:blur(60px);opacity:.5;z-index:0;pointer-events:none}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,#bcd2ff,transparent 70%);top:-120px;left:-140px;animation:drift1 18s ease-in-out infinite}
+.blob.b2{width:460px;height:460px;background:radial-gradient(circle,#bdeee8,transparent 70%);top:340px;right:-160px;animation:drift2 22s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(60px,-40px) scale(1.12)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-50px,50px) scale(1.1)}}
+nav,header,section,footer{position:relative;z-index:1}
+
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(246,249,255,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;height:68px;gap:30px}
+.logo{font-weight:800;font-size:22px;letter-spacing:-.5px;display:flex;align-items:center;gap:8px}
+.logo .b{color:var(--blue)}
+.logo .mark{width:30px;height:30px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;color:#fff;font-size:14px;font-weight:800}
+.menu{display:flex;gap:19px;font-size:14.5px;font-weight:600;color:var(--gray)}
+.menu a{position:relative;padding:4px 0;white-space:nowrap;transition:.15s}
+.menu a:hover{color:var(--blue)}
+.menu a.active{color:var(--blue)}
+.menu a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;border-radius:2px;background:var(--blue)}
+.nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:12px;transition:.18s;font-size:15px}
+.btn-primary{background:var(--blue);color:#fff;padding:12px 22px;position:relative;overflow:hidden}
+.btn-primary:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 10px 24px rgba(46,107,230,.35)}
+.btn-primary::after{content:"";position:absolute;top:0;left:-130%;width:60%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:shine 3.6s ease-in-out infinite}
+@keyframes shine{0%,100%{left:-130%}55%{left:160%}}
+@media(max-width:1240px){
+  nav .wrap{flex-wrap:wrap;height:auto;padding-top:12px;padding-bottom:10px;gap:10px 14px}
+  .menu{order:3;width:100%;flex-wrap:wrap;gap:10px 18px;padding-top:9px;border-top:1px solid var(--line)}
+  .nav-cta{margin-left:auto}
+}
+
+/* about hero */
+.ahero{padding:72px 0 30px;text-align:center}
+.ahero .pill{display:inline-flex;gap:8px;align-items:center;background:var(--soft);color:var(--blue);font-weight:700;font-size:14px;padding:8px 15px;border-radius:999px;margin-bottom:20px}
+.ahero h1{font-size:48px;line-height:1.25;letter-spacing:-1.5px;font-weight:800}
+.ahero h1 .c{background:linear-gradient(90deg,var(--blue),var(--teal),#7b5cff,var(--blue));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:flow 5s linear infinite}
+@keyframes flow{to{background-position:300% 0}}
+.ahero p{margin:18px auto 0;color:var(--gray);font-size:18px;max-width:560px}
+@media(max-width:860px){.ahero h1{font-size:34px}}
+
+section.block{padding:36px 0 76px}
+.about-body{max-width:720px;margin:0 auto;text-align:center}
+.about-body p{font-size:17px;color:var(--gray);margin-bottom:18px;line-height:1.78}
+.about-body p b{color:var(--ink)}
+.pullquote{font-size:24px;font-weight:800;letter-spacing:-.5px;color:var(--navy);line-height:1.55;margin:32px auto;padding:24px 28px;border-left:4px solid var(--blue);background:var(--soft);border-radius:0 14px 14px 0;text-align:left;max-width:700px}
+.about-mini{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;max-width:880px;margin:48px auto 0}
+.about-mini .am{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px 22px;text-align:center;box-shadow:var(--shadow-sm);transition:.25s}
+.about-mini .am:hover{transform:translateY(-7px);box-shadow:var(--shadow)}
+.about-mini .am .e{font-size:30px}
+.about-mini .am b{display:block;font-size:16px;margin:9px 0 5px}
+.about-mini .am p{color:var(--gray);font-size:14px}
+@media(max-width:860px){.about-mini{grid-template-columns:1fr}.pullquote{font-size:19px}}
+
+/* mission band */
+.mission{background:linear-gradient(135deg,var(--navy),var(--blue-d));border-radius:28px;padding:54px 40px;text-align:center;color:#fff;max-width:880px;margin:60px auto 0}
+.mission .e{font-size:14px;color:#a9bdf0;font-weight:800;letter-spacing:.5px}
+.mission h2{font-size:30px;letter-spacing:-.8px;margin:8px 0 22px;line-height:1.4}
+.mission .btn-primary{background:#fff;color:var(--blue);font-size:16px;padding:15px 30px}
+.mission .btn-primary::after{display:none}
+
+footer{padding:46px 0 70px;color:var(--gray);font-size:14px;text-align:center}
+footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
+
+.rv{opacity:0;transform:translateY(34px) scale(.97);transition:.8s cubic-bezier(.16,.84,.34,1)}
+.rv.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<div class="blob b1"></div><div class="blob b2"></div>
+
+<!-- nav -->
+<nav><div class="wrap">
+  <div class="logo"><a href="index.html" style="display:flex;align-items:center;gap:8px"><span class="mark">P</span>프로<span class="b">홈페이지</span></a></div>
+  <div class="menu">
+    <a href="about.html" class="active">소개</a>
+    <a href="index.html#include">홈페이지 구성</a>
+    <a href="index.html#bot">AI 챗봇</a>
+    <a href="index.html#calc">효과 계산기</a>
+    <a href="index.html#how">진행 방식</a>
+    <a href="index.html#port">포트폴리오</a>
+    <a href="index.html#price">가격</a>
+    <a href="index.html#policy">이용 안내</a>
+    <a href="index.html#contact">문의</a>
+  </div>
+  <div class="nav-cta">
+    <button class="btn btn-primary" onclick="location.href='index.html#contact'">무료 상담 신청</button>
+  </div>
+</div></nav>
+
+<!-- about hero -->
+<header class="ahero"><div class="wrap">
+  <span class="pill rv in">소개</span>
+  <h1 class="rv in">전문직도, 이제 <span class="c">브랜드의 시대</span>입니다.</h1>
+  <p class="rv in">실력은 기본, 이제는 어떻게 ‘보이느냐’가 의뢰로 이어집니다.<br>프로 홈페이지가 그 일을 대신합니다.</p>
+</div></header>
+
+<!-- story -->
+<section class="block"><div class="wrap">
+  <div class="about-body">
+    <p class="rv">예전에는 실력만 있으면 충분했습니다. 좋은 결과를 내면 입소문이 돌고, 소개가 또 다른 소개를 불렀으니까요. 하지만 지금 의뢰인이 가장 먼저 하는 일은 ‘검색’입니다. 이름을 찾아보고, 사무실을 둘러보고, 후기를 읽은 뒤에야 연락합니다.</p>
+    <p class="rv"><b>같은 실력이라도, 제대로 ‘보이는’ 전문가가 선택받습니다.</b> 홈페이지가 없어서 후보에서 조용히 밀려나는 일이 매일 일어납니다. 반대로, 잘 정리된 약력 한 페이지는 “이 사람에게 맡기고 싶다”는 확신을 만듭니다.</p>
+    <div class="pullquote rv">“전문성은 기본, 이제는 어떻게 ‘보이느냐’가 의뢰로 이어집니다.”</div>
+    <p class="rv">전문직에게도 PR과 브랜딩이 필요한 시대입니다. 그런데 정작 전문가는 바쁩니다. 홍보는 본업이 아니고, 디자인과 마케팅에 시간을 쓸 여유도 없죠. 좋은 실력이 ‘보이지 않아서’ 묻히는 건 너무 아까운 일입니다.</p>
+    <p class="rv"><b>그래서 프로 홈페이지가 시작됐습니다.</b> 전문가는 사건과 의뢰인에게 집중하고, 신뢰를 만드는 홈페이지와 브랜딩은 저희가 맡습니다. 사진 한 장, 약력 한 줄, 상담 버튼 하나까지 — 당신의 전문성이 제대로 보이도록 설계합니다.</p>
+  </div>
+
+  <div class="about-mini">
+    <div class="am rv"><div class="e">🔍</div><b>검색의 시대</b><p>의뢰인은 연락 전에 먼저 검색합니다. 안 보이면, 없는 것과 같습니다.</p></div>
+    <div class="am rv"><div class="e">🤝</div><b>신뢰의 첫인상</b><p>잘 만든 약력 페이지 하나가 ‘맡기고 싶은 전문가’를 만듭니다.</p></div>
+    <div class="am rv"><div class="e">🎯</div><b>본업에 집중</b><p>브랜딩·홈페이지는 저희에게. 전문가는 사건에만 집중하세요.</p></div>
+  </div>
+
+  <div class="mission rv">
+    <p class="e">OUR MISSION</p>
+    <h2>전문가의 실력이,<br>제대로 보이게 만듭니다.</h2>
+    <button class="btn btn-primary" onclick="location.href='index.html#contact'">무료 상담 신청하기 →</button>
+  </div>
+</div></section>
+
+<footer><div class="wrap">
+  <div class="logo"><span class="mark">P</span>프로<span class="b">홈페이지</span></div>
+  <p>변호사·세무사 등 전문직 사무실 홈페이지 제작 서비스</p>
+  <p style="margin-top:8px"><a href="mailto:chloe.heydayii@gmail.com" style="color:var(--blue);font-weight:600">chloe.heydayii@gmail.com</a></p>
+  <p style="margin-top:8px;font-size:13px">© 2026 프로 홈페이지 · 데모 시안</p>
+</div></footer>
+
+<script>
+const io=new IntersectionObserver(es=>es.forEach(en=>{
+  if(en.isIntersecting){
+    const sibs=[...en.target.parentElement.querySelectorAll(':scope > .rv')];
+    const i=Math.max(0,sibs.indexOf(en.target));
+    en.target.style.transitionDelay=(i*0.08)+'s';
+    en.target.classList.add('in');io.unobserve(en.target);
+  }
+}),{threshold:.1});
+document.querySelectorAll('.rv:not(.in)').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
