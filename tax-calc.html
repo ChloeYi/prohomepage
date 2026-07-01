@@ -20,11 +20,14 @@ nav .wrap{display:flex;align-items:center;height:66px;gap:26px}
 .logo{font-weight:800;font-size:21px;letter-spacing:-.5px;display:flex;align-items:center;gap:9px;color:var(--green)}
 .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--green),var(--gold));display:grid;place-items:center;color:#fff;font-size:17px;font-weight:800}
 .logo small{display:block;font-size:10px;color:var(--gray);font-weight:600;letter-spacing:1px}
+.navback{flex:0 0 40px;width:40px;height:40px;border-radius:50%;background:#fff;border:1px solid var(--line);display:grid;place-items:center;font-size:20px;color:var(--green);text-decoration:none;transition:.16s;box-shadow:0 8px 24px rgba(15,94,78,.08)}
+.navback:hover{background:var(--green);color:#fff;border-color:var(--green);transform:translateX(-2px)}
 .menu{display:flex;gap:22px;font-size:15px;font-weight:600;color:var(--gray)}
 .menu a:hover{color:var(--green)}
 .menu a.on{color:var(--green);font-weight:800}
 .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
-.tel{font-weight:800;color:var(--green);font-size:16px}
+.tel{font-weight:800;color:var(--green);font-size:16px;text-decoration:none}
+.tel:hover{text-decoration:underline}
 .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;border-radius:11px;transition:.18s;font-size:15px;display:inline-block}
 .btn-gold{background:var(--gold);color:#3a2c08;padding:12px 20px}
 .btn-gold:hover{background:var(--gold-d);color:#fff}
@@ -90,6 +93,7 @@ footer .copy{margin-top:8px;color:#6f8d86;font-size:11.5px}
 <div class="samplebar">📌 프로 홈페이지 포트폴리오 샘플 (가상의 세무사무소) · <a href="index.html">프로 홈페이지로 돌아가기</a></div>
 
 <nav><div class="wrap">
+  <a class="navback" href="portfolio-tax.html" aria-label="뒤로가기">←</a>
   <a class="logo" href="portfolio-tax.html"><span class="mark">한</span><div>한결 세무회계<small>HANGYEOL TAX</small></div></a>
   <div class="menu">
     <a href="portfolio-tax.html#svc">업무분야</a>
@@ -98,7 +102,7 @@ footer .copy{margin-top:8px;color:#6f8d86;font-size:11.5px}
     <a href="portfolio-tax.html#contact">상담신청</a>
   </div>
   <div class="nav-cta">
-    <span class="tel">02-000-0000</span>
+    <a class="tel" href="tel:0200000000">📞 02-000-0000</a>
     <a class="btn btn-gold" href="portfolio-tax.html#contact">상담 신청</a>
     <a class="btn btn-kakao" href="portfolio-tax.html#contact">카카오톡 상담</a>
   </div>
