@@ -581,7 +581,11 @@ footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
   <h2 class="rv">1분이면 충분합니다.</h2>
   <p class="sub rv">아래만 남겨주시면, 영업일 1일 내 Zoom 미팅 일정을 잡아드립니다.</p>
   <div class="form-card rv">
-    <form id="leadForm">
+    <form id="leadForm" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="cba3133a-f0eb-44fd-8924-56dccde07b29">
+      <input type="hidden" name="subject" value="[프로 홈페이지] 새 상담 신청 (samuso.shop)">
+      <input type="hidden" name="from_name" value="프로 홈페이지 문의폼">
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
       <div class="frow">
         <div class="field"><label>성함 <span class="req">*</span></label><input type="text" name="name" placeholder="홍길동" required></div>
         <div class="field"><label>연락처 <span class="req">*</span></label><input type="tel" name="phone" placeholder="010-0000-0000" required></div>
@@ -605,12 +609,12 @@ footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
       <div class="field" style="margin-bottom:16px">
         <label>필요한 것 (복수 선택)</label>
         <div class="checks" id="needs">
-          <label class="chk"><input type="checkbox" value="홈페이지 제작">홈페이지 제작</label>
-          <label class="chk"><input type="checkbox" value="약력·경력 페이지">약력·경력 페이지</label>
-          <label class="chk"><input type="checkbox" value="상담 예약·문의">상담 예약·문의</label>
-          <label class="chk"><input type="checkbox" value="AI 챗봇">AI 챗봇</label>
-          <label class="chk"><input type="checkbox" value="후기·사례 페이지">후기·사례 페이지</label>
-          <label class="chk"><input type="checkbox" value="검색 노출(SEO)">검색 노출(SEO)</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="홈페이지 제작">홈페이지 제작</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="약력·경력 페이지">약력·경력 페이지</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="상담 예약·문의">상담 예약·문의</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="AI 챗봇">AI 챗봇</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="후기·사례 페이지">후기·사례 페이지</label>
+          <label class="chk"><input type="checkbox" name="필요한 항목[]" value="검색 노출(SEO)">검색 노출(SEO)</label>
         </div>
       </div>
       <div class="frow">
@@ -629,7 +633,7 @@ footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
       </div>
       <div class="field" style="margin-bottom:18px"><label>추가로 하고 싶은 말</label><textarea name="memo" placeholder="원하는 분위기, 참고할 사이트, 궁금한 점 등을 자유롭게 적어주세요."></textarea></div>
       <button type="submit" class="btn btn-primary">무료 상담 신청하기 →</button>
-      <p class="privacy">제출하신 정보는 상담 목적으로만 사용됩니다. (데모 화면 — 실제 전송되지 않습니다)</p>
+      <p class="privacy">제출하신 정보는 상담 목적으로만 사용되며, 제출 시 담당자 이메일로 전달됩니다.</p>
     </form>
     <div class="form-msg" id="formMsg">
       <div class="ok">✅</div>
@@ -669,11 +673,15 @@ footer .logo{justify-content:center;margin-bottom:12px;color:var(--navy)}
       <div class="benefit"><span class="c">✓</span>이번 달 신청 한정, 제작비 할인</div>
       <div class="benefit"><span class="c">✓</span>무료 디자인 시안 1회 제공</div>
       <div class="benefit"><span class="c">✓</span>15분 무료 Zoom 상담 + 맞춤 견적</div>
-      <form class="modal-form" id="modalForm">
-        <input type="tel" placeholder="연락처 (010-0000-0000)" required>
+      <form class="modal-form" id="modalForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="cba3133a-f0eb-44fd-8924-56dccde07b29">
+        <input type="hidden" name="subject" value="[프로 홈페이지] 팝업 혜택 신청 (samuso.shop)">
+        <input type="hidden" name="from_name" value="프로 홈페이지 팝업">
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off">
+        <input type="tel" name="phone" placeholder="연락처 (010-0000-0000)" required>
         <button type="submit" class="btn btn-primary">혜택 받기</button>
       </form>
-      <p class="modal-priv">제출 정보는 상담 목적으로만 사용됩니다. (데모 — 실제 전송되지 않습니다)</p>
+      <p class="modal-priv">제출 정보는 상담 목적으로만 사용되며, 담당자에게 전달됩니다.</p>
     </div>
     <div class="modal-ok" id="modalOk">
       <div class="e">🎉</div>
@@ -700,8 +708,15 @@ function closeModal(skipToday){
 window.addEventListener('DOMContentLoaded',()=>{
   let hidden=false;try{hidden=localStorage.getItem('pp_hide')===new Date().toDateString();}catch(e){}
   if(!hidden)setTimeout(()=>document.getElementById('modal').classList.add('show'),2500);
-  document.getElementById('modalForm').addEventListener('submit',e=>{
+  document.getElementById('modalForm').addEventListener('submit',async e=>{
     e.preventDefault();
+    const f=e.target, btn=f.querySelector('button');
+    btn.disabled=true; btn.textContent='전송 중…';
+    try{
+      const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(f)});
+      const d=await res.json();
+      if(!d.success) throw new Error();
+    }catch(err){ btn.disabled=false; btn.textContent='혜택 받기'; alert('전송에 실패했어요. 잠시 후 다시 시도해 주세요.'); return; }
     document.getElementById('modalBd').style.display='none';
     document.getElementById('modalFoot').style.display='none';
     document.getElementById('modalOk').style.display='block';
@@ -751,12 +766,22 @@ document.querySelectorAll('.chk input').forEach(i=>{
   });
 });
 
-/* ---- form submit (demo, no network) ---- */
-document.getElementById('leadForm').addEventListener('submit',e=>{
+/* ---- form submit (Web3Forms) ---- */
+document.getElementById('leadForm').addEventListener('submit',async e=>{
   e.preventDefault();
-  document.getElementById('leadForm').style.display='none';
-  const m=document.getElementById('formMsg');m.style.display='block';
-  m.scrollIntoView({behavior:'smooth',block:'center'});
+  const form=e.target, btn=form.querySelector('button[type=submit]'), orig=btn.textContent;
+  btn.disabled=true; btn.textContent='전송 중…';
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:new FormData(form)});
+    const data=await res.json();
+    if(!data.success) throw new Error(data.message||'submit failed');
+    form.style.display='none';
+    const m=document.getElementById('formMsg');m.style.display='block';
+    m.scrollIntoView({behavior:'smooth',block:'center'});
+  }catch(err){
+    btn.disabled=false; btn.textContent=orig;
+    alert('전송에 실패했어요. 잠시 후 다시 시도하거나 chloe.heydayii@gmail.com 으로 연락 주세요.');
+  }
 });
 
 /* ---- scroll reveal (staggered) ---- */
